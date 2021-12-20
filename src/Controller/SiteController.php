@@ -9,12 +9,33 @@ use Symfony\Component\Routing\Annotation\Route;
 class SiteController extends AbstractController
 {
     /**
-     * @Route("/", name="site")
+     * @Route("/", name="Accueil")
      */
     public function index(): Response
     {
         return $this->render('site/index.html.twig', [
             'controller_name' => 'SiteController',
         ]);
+    }
+	/**
+     * @Route("/portfolio", name="Portfolio")
+     */
+	public function portfolio()
+    {
+        return $this->render('site/portfolio.html.twig');
+    }
+	/**
+     * @Route("/cv", name="CV")
+     */
+	public function cv()
+    {
+        return $this->render('site/portfolio.html.twig');
+    }
+	/**
+     * @Route("/blog", name="Blog")
+     */
+	public function blog()
+    {
+        return $this->render('site/blog.html.twig');
     }
 }
