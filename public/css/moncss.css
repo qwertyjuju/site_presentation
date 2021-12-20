@@ -4,8 +4,8 @@ body{
 
 .titre{
 	font-size: 96px;
-	font-family: Segoe print;
-	text-shadow: -1px -1px #fb6, 1px 1px #d60, -3px 0 4px #000;
+	font-family: fantasy;
+	text-shadow: -2px -3px rgb(143, 143, 143), 3px 2px rgb(34, 34, 34), -3px 0 4px #000;
 }
 .container{
 	width: 1 em;
@@ -13,8 +13,4 @@ body{
 	margin-left: 32px;
 	margin-top: 32px;
 	margin-right:32px
-}
-
-.cadre{
-	
 }
