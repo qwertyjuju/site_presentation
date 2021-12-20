@@ -29,7 +29,7 @@ class SiteController extends AbstractController
      */
 	public function cv()
     {
-        return $this->render('site/portfolio.html.twig');
+        return $this->render('site/cv.html.twig');
     }
 	/**
      * @Route("/blog", name="Blog")
