@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class SiteController extends AbstractController
 {
     /**
-     * @Route("/", name="Accueil")
+     *Route("/", name: "Accueil")
      */
     public function index(): Response
     {
@@ -25,14 +25,14 @@ class SiteController extends AbstractController
         return $this->render('site/portfolio.html.twig');
     }
 	/**
-     * @Route("/cv", name="CV")
+     * @Route("/cv", name="cv")
      */
 	public function cv()
     {
         return $this->render('site/cv.html.twig');
     }
 	/**
-     * @Route("/blog", name="Blog")
+     * @Route("/blog", name="blog")
      */
 	public function blog()
     {
