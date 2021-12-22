@@ -20,33 +20,43 @@
 				&emsp;&emsp;&emsp;&emsp;&emsp;JULIEN</h1>
 		</header>
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		  <div class="container-fluid">
-			<a class="navbar-brand">ANDREOLI Julien</a>
-			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
-			  <span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarColor03">
-			  <ul class="navbar-nav me-auto">
-			  	<li class="nav-item">
-				  <a class="nav-link active" href="/">Accueil</a>
-				</li>
-				<li class="nav-item">
-				  <a class="nav-link active" href="/portfolio">Portfolio
-					<span class="visually-hidden">(current)</span>
-				  </a>
-				</li>
-				<li class="nav-item">
-				  <a class="nav-link" href="/cv">CV</a>
-				</li>
-				<li class="nav-item">
-				  <a class="nav-link hidden" href="/blog">Blog</a>
-				</li>
-				<li class="nav-item">
-				  <a class="nav-link hidden" href="#">A propos</a>
-				</li>
-			  </ul>
+			<div class="container-fluid">
+				<a class="navbar-brand">ANDREOLI Julien</a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarColor03">
+					<ul class="navbar-nav me-auto">
+						<li class="nav-item">
+						<a class="nav-link active" href="/">Accueil</a>
+						</li>
+						<li class="nav-item">
+						<a class="nav-link active" href="/portfolio">Portfolio
+							<span class="visually-hidden">(current)</span>
+						</a>
+						</li>
+						<li class="nav-item">
+						<a class="nav-link" href="/cv">CV</a>
+						</li>
+						<li class="nav-item">
+						<a class="nav-link hidden" href="/blog">Blog</a>
+						</li>
+						<li class="nav-item">
+						<a class="nav-link hidden" href="#">A propos</a>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Lang</a>
+							<div class="dropdown-menu">
+							  <a class="dropdown-item" href="{{ path('accueil', {_locale: 'fr'}) }}">fr</a>
+							  <a class="dropdown-item" href="{{ app.request.setlocale('fr')|path('test') }}">en</a>
+							  <a class="dropdown-item" href="#">Something else here</a>
+							  <div class="dropdown-divider"></div>
+							  <a class="dropdown-item" href="#">Separated link</a>
+							</div>
+						  </li>
+					</ul>
+				</div>
 			</div>
-		  </div>
 		</nav>
         {% block body %}{% endblock %}
 		<footer>
