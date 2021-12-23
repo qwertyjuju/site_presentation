@@ -29,7 +29,6 @@ class SiteController extends AbstractController
     public function acceuil(): Response
     {
         return $this->render('site/index.html.twig',[
-            'controller_name'=>'test'
         ]);
     }
 	/**

@@ -4,20 +4,9 @@
 
 {% block body %}
 <div class="container">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'F:/Documents/Etudes/BUT RT/SAE14/site/src/Controller/SiteController.php'|file_link(0) }}">src/Controller/SiteController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'F:/Documents/Etudes/BUT RT/SAE14/site/templates/site/index.html.twig'|file_link(0) }}">templates/site/index.html.twig</a></code></li>
-    </ul>
-	<button type="button" class="btn btn-primary">Primary</button>
-	<button type="button" class="btn btn-secondary">Secondary</button>
-	<button type="button" class="btn btn-success">Success</button>
-	<button type="button" class="btn btn-info">Info</button>
-	<button type="button" class="btn btn-warning">Warning</button>
-	<button type="button" class="btn btn-danger">Danger</button>
-	<button type="button" class="btn btn-light">Light</button>
-	<button type="button" class="btn btn-dark">Dark</button>
-	<button type="button" class="btn btn-link">Link</button>
+	<div class="cadre">
+		<h1>Présentation</h1>
+		<p>{{ 'Bonjour et bienvenue sur mon site.'|trans }}</p>
+	</div>
 </div>
 {% endblock %}

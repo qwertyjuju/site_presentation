@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="fr" target-language="fr" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="UzFhc1Y" resname="Accueil">
+        <source>Accueil</source>
+        <target>__Accueil</target>
+      </trans-unit>
+      <trans-unit id="D1.tF5H" resname="CV">
+        <source>CV</source>
+        <target>__CV</target>
+      </trans-unit>
+      <trans-unit id="jGvAmVN" resname="Blog">
+        <source>Blog</source>
+        <target>__Blog</target>
+      </trans-unit>
+      <trans-unit id="ZyFT62v" resname="A propos">
+        <source>A propos</source>
+        <target>__A propos</target>
+      </trans-unit>
+      <trans-unit id="OE2wcGq" resname="Bonjour et bienvenue sur mon site.">
+        <source>Bonjour et bienvenue sur mon site.</source>
+        <target>__Bonjour et bienvenue sur mon site.</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
