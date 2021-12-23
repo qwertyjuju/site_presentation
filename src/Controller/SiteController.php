@@ -5,36 +5,51 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 class SiteController extends AbstractController
 {
     /**
-     * @Route("/", name="Accueil")
+     * @Route("/")
      */
-    public function index(): Response
+    public function accueilNoLocale(): Response
     {
-        return $this->render('site/index.html.twig', [
-            'controller_name' => 'SiteController',
+        return $this->redirectToRoute("accueil");
+    }
+    /**
+     * @Route("/portfolio")
+     */
+    public function portfolioNoLocale(): Response
+    {
+        return $this->redirectToRoute("portfolio");
+    }
+    /**
+     * @Route("/{_locale<%app.supported_locales%>}/", name="accueil")
+     */
+    public function acceuil(): Response
+    {
+        return $this->render('site/index.html.twig',[
+            'controller_name'=>'test'
         ]);
     }
 	/**
-     * @Route("/portfolio", name="Portfolio")
+     * @Route("/{_locale<%app.supported_locales%>}/portfolio", name="portfolio")
      */
-	public function portfolio()
+	public function portfolio(): Response
     {
         return $this->render('site/portfolio.html.twig');
     }
 	/**
-     * @Route("/cv", name="CV")
+     * @Route("/{_locale<%app.supported_locales%>}/cv", name="cv")
      */
-	public function cv()
+	public function cv(): Response
     {
         return $this->render('site/cv.html.twig');
     }
 	/**
-     * @Route("/blog", name="Blog")
+     * @Route("/{_locale<%app.supported_locales%>}/blog", name="blog")
      */
-	public function blog()
+	public function blog(): Response
     {
         return $this->render('site/blog.html.twig');
     }
