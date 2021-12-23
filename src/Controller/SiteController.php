@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 class SiteController extends AbstractController
 {
     /**
-     * @Route("/", name="test")
+     * @Route("/")
      */
     public function accueilNoLocale(): Response
     {
@@ -24,55 +24,33 @@ class SiteController extends AbstractController
         return $this->redirectToRoute("portfolio");
     }
     /**
-     * @Route("/{{ request.getLocale() }}/", name="accueil")
+     * @Route("/{_locale<%app.supported_locales%>}/", name="accueil")
      */
-    public function acceuil(Request $request): Response
+    public function acceuil(): Response
     {
-        $lang = $request->getLocale();
-        if ($lang == 'fr'){
-            return $this->render('site/fr/index.html.twig',[
-                'controller_name'=>'test'
-            ]);
-        }
-        if ($lang == 'en'){
-            return $this->render('site/fr/index.html.twig',[
-                'controller_name'=>$lang
-            ]);
-        }
-        else{
-            return $this->render('site/langnotfound.html.twig',[
-                'controller_name'=>$lang
-            ]);
-        }
+        return $this->render('site/index.html.twig',[
+            'controller_name'=>'test'
+        ]);
     }
 	/**
-     * @Route("/{_locale}/portfolio", name="portfolio")
+     * @Route("/{_locale<%app.supported_locales%>}/portfolio", name="portfolio")
      */
-	public function portfolio(Request $request): Response
+	public function portfolio(): Response
     {
-        $lang = $request->getLocale();
-        if ($lang == 'fr'){
-            return $this->render('site/fr/portfolio.html.twig');
-        }
+        return $this->render('site/portfolio.html.twig');
     }
 	/**
-     * @Route("/{_locale}/cv", name="cv")
+     * @Route("/{_locale<%app.supported_locales%>}/cv", name="cv")
      */
-	public function cv(Request $request): Response
+	public function cv(): Response
     {
-        $lang = $request->getLocale();
-        if ($lang == 'fr'){
-            return $this->render('site/cv.html.twig');
-        }
+        return $this->render('site/cv.html.twig');
     }
 	/**
-     * @Route("/{_locale}/blog", name="blog")
+     * @Route("/{_locale<%app.supported_locales%>}/blog", name="blog")
      */
-	public function blog(Request $request): Response
+	public function blog(): Response
     {
-        $lang = $request->getLocale();
-        if ($lang == 'fr'){
-            return $this->render('site/blog.html.twig');
-        }
+        return $this->render('site/blog.html.twig');
     }
 }
