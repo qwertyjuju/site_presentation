@@ -24,6 +24,13 @@ class SiteController extends AbstractController
         return $this->redirectToRoute("portfolio");
     }
     /**
+     * @Route("/cv")
+     */
+    public function cvoNoLocale(): Response
+    {
+        return $this->redirectToRoute("cv");
+    }
+    /**
      * @Route("/{_locale<%app.supported_locales%>}/", name="accueil")
      */
     public function acceuil(): Response
