@@ -1,1 +1,92 @@
 {% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-4">
+            <div class="cadre">
+                <div class="initial">
+                    <div class="titrecadre">
+                        <h1>{{ 'Administrer'|trans }}</h1>
+                    </div>
+                    <p>{{ 'Administrer les réseaux et l\'internet'|trans }}</p>
+                    <ul>
+                        <li>
+                            {{ 'Choisir des solutions et des technologies adaptées'|trans }}
+                        </li>
+                        <li>
+                            {{ 'Respecter les principes fondamentaux de la sécurité informatique'|trans }}
+                        </li>
+                        <li>
+                            {{ 'Respecter les règles métiers'|trans }}
+                        </li>
+                        <li>
+                            {{ 'Assurer une veille technologique'|trans }}
+                        </li>
+                    </ul>
+                </div>
+                <div class="anim">
+                    <div class="titrecadre">
+                        <h1>{{ 'Administrer'|trans }}</h1>
+                    </div>
+                    <p>{{ 'Administrer les réseaux et l\'internet'|trans }}</p>
+                    <ul>
+                        <li>
+                            {{ 'Choisir des solutions et des technologies adaptées'|trans }}
+                        </li>
+                        <li>
+                            {{ 'Respecter les principes fondamentaux de la sécurité informatique'|trans }}
+                        </li>
+                        <li>
+                            {{ 'Respecter les règles métiers'|trans }}
+                        </li>
+                        <li>
+                            {{ 'Assurer une veille technologique'|trans }}
+                        </li>
+                    </ul>
+                    <button onclick="window.location.href='/'">{{ 'Lire la suite'|trans }}</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="cadre">
+                <div class="initial">
+                    <div class="titrecadre">
+                        <h1>{{ 'Connecter'|trans }}</h1>
+                    </div>
+                    <p>{{ 'Connecter les entreprises et les usagers'|trans }}</p>
+                    <ul>
+                        <li>
+                            {{ 'démarche scientifique'|trans }}
+                        </li>
+                        <li>
+                            {{ 'Choisir les solutions et les technologies adaptées'|trans }}
+                        </li>
+                        <li>
+                            {{ 'Proposer des solutions respectueuses de l\'environnement'|trans }}
+                        </li>
+                    </ul>
+                </div>
+                <div class="anim">
+                    <div class="titrecadre">
+                        <h1>{{ 'Connecter'|trans }}</h1>
+                    </div>
+                    <p>{{ 'Connecter les entreprises et les usagers'|trans }}</p>
+                    <ul>
+                        <li>
+                            {{ 'démarche scientifique'|trans }}
+                        </li>
+                        <li>
+                            {{ 'Choisir les solutions et les technologies adaptées'|trans }}
+                        </li>
+                        <li>
+                            {{ 'Proposer des solutions respectueuses de l\'environnement'|trans }}
+                        </li>
+                    </ul>
+                    <button onclick="window.location.href='/'">{{ 'Lire la suite'|trans }}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

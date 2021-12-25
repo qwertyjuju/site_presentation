@@ -21,6 +21,38 @@
         <source>A propos</source>
         <target>About</target>
       </trans-unit>
+      <trans-unit id="OE2wcGq" resname="Bonjour et bienvenue sur mon site.">
+        <source>Bonjour et bienvenue sur mon site.</source>
+        <target>Hello and weldome on my personnal site.</target>
+      </trans-unit>
+      <trans-unit id="Udt6jUw" resname="Administrer">
+        <source>Administrer</source>
+        <target>__Administrer</target>
+      </trans-unit>
+      <trans-unit id="4KeYFcx" resname="Administrer les réseaux et l'internet">
+        <source>Administrer les réseaux et l'internet</source>
+        <target>__Administrer les réseaux et l'internet</target>
+      </trans-unit>
+      <trans-unit id="Si3L06V" resname="Choisir des solutions et des technologies adaptées">
+        <source>Choisir des solutions et des technologies adaptées</source>
+        <target>__Choisir des solutions et des technologies adaptées</target>
+      </trans-unit>
+      <trans-unit id="TUxIr8o" resname="Respecter les principes fondamentaux de la sécurité informatique">
+        <source>Respecter les principes fondamentaux de la sécurité informatique</source>
+        <target>__Respecter les principes fondamentaux de la sécurité informatique</target>
+      </trans-unit>
+      <trans-unit id="G7.EYMo" resname="Respecter les règles métiers">
+        <source>Respecter les règles métiers</source>
+        <target>__Respecter les règles métiers</target>
+      </trans-unit>
+      <trans-unit id="4NvQ6Id" resname="Assurer une veille technologique">
+        <source>Assurer une veille technologique</source>
+        <target>__Assurer une veille technologique</target>
+      </trans-unit>
+      <trans-unit id="xGWsLuh" resname="Lire la suite">
+        <source>Lire la suite</source>
+        <target>Continue reading</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
