@@ -1,4 +1,35 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-
+<div class="container">
+    <div class="row">
+        <div class="cadre">
+            <div class="titrecadre">
+                <h1>{{ 'Education'|trans }}</h1>
+            </div>
+            <p>
+                #TODO
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="cadre">
+            <div class="titrecadre">
+                <h1>{{ 'Expériences professionelles'|trans }}</h1>
+            </div>
+            <p>
+                #TODO
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="cadre">
+            <div class="titrecadre">
+                <h1>{{ 'Telecharger le CV'|trans }}</h1>
+            </div>
+            <p>
+                {{ form(form) }}
+            </p>
+        </div>
+    </div>
+</div>
 {% endblock %}

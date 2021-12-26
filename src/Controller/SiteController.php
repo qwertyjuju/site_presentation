@@ -2,6 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Profile;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -50,7 +54,17 @@ class SiteController extends AbstractController
      */
 	public function cv(): Response
     {
-        return $this->render('site/cv.html.twig');
+        $profile = new Profile();
+        $form = $this->createFormBuilder($profile)
+            ->add('prenom', TextType::class,['label' => 'Prenom:'])
+            ->add('nom', TextType::class,['label' => 'Nom:'])
+            ->add('email', TextType::class,['label' => 'E-mail:'])
+            ->add('save', SubmitType::class, ['label' => 'télecharger CV'])
+            ->getForm();
+
+        return $this->renderForm('site/cv.html.twig',[
+            'form' => $form,
+        ]);
     }
 	/**
      * @Route("/{_locale<%app.supported_locales%>}/blog", name="blog")
