@@ -1,1 +1,3 @@
 {{ ''|trans }}
+php bin/console translation:extract --force --dump-messages fr
+php bin/console translation:extract --force --dump-messages en
