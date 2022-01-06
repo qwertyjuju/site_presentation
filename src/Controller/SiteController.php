@@ -34,6 +34,15 @@ class SiteController extends AbstractController
     {
         return $this->redirectToRoute("cv");
     }
+
+    /**
+     * @Route("/download", name="downloadNoLocale")
+     */
+    public function downloadNoLocale(): Response
+    {
+        return $this->redirectToRoute("download");
+    }
+
     /**
      * @Route("/{_locale<%app.supported_locales%>}/", name="accueil")
      */
@@ -52,7 +61,7 @@ class SiteController extends AbstractController
 	/**
      * @Route("/{_locale<%app.supported_locales%>}/cv", name="cv")
      */
-	public function cv(): Response
+	public function cv(Request $request): Response
     {
         $profile = new Profile();
         $form = $this->createFormBuilder($profile)
@@ -61,7 +70,10 @@ class SiteController extends AbstractController
             ->add('email', TextType::class,['label' => 'E-mail:'])
             ->add('save', SubmitType::class, ['label' => 'télecharger CV'])
             ->getForm();
-
+        if ($form->isSubmitted() and $form->isValid())
+        {
+            return $this->redirectToRoute("downloadNoLocale");
+        }
         return $this->renderForm('site/cv.html.twig',[
             'form' => $form,
         ]);
@@ -72,5 +84,13 @@ class SiteController extends AbstractController
 	public function blog(): Response
     {
         return $this->render('site/blog.html.twig');
+    }
+
+    /**
+     * @Route("/{_locale<%app.supported_locales%>}/download", name="download")
+     */
+    public function download(): Response
+    {
+        new BinaryFileResponse("../../public/dl/cv.pdf");
     }
 }
