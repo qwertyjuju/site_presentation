@@ -70,6 +70,7 @@ class SiteController extends AbstractController
             ->add('email', TextType::class,['label' => 'E-mail:'])
             ->add('save', SubmitType::class, ['label' => 'télecharger CV'])
             ->getForm();
+        $form->handleRequest($request);
         if ($form->isSubmitted() and $form->isValid())
         {
             return $this->redirectToRoute("downloadNoLocale");
