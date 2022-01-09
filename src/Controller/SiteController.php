@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Profile;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -92,6 +93,7 @@ class SiteController extends AbstractController
      */
     public function download(): Response
     {
-        new BinaryFileResponse("../../public/dl/cv.pdf");
+        $response = new BinaryFileResponse("dl/cv.pdf");
+        return $response;
     }
 }

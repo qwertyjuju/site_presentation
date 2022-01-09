@@ -59,3 +59,8 @@
 	height: 20%;
 }
 
+.profileimg{
+	width: 50%;
+	height: 50%;
+	border-radius: 100%;
+}
