@@ -6,44 +6,21 @@
 	<div class="row">
 		<div class="frame">
 			<div class="frame-title">
-				<h1>{{ 'Présentation'|trans }}</h1>
+				<h1>{{ 'Presentation'|trans }}</h1>
 			</div>
 			<div class="frame-body">
-				<p>{{ 'Bonjour et bienvenue sur mon site.'|trans }}</p>
-				<p>
+				<p>{{ 'Bonjour et bienvenue sur mon site'|trans }}</p>
+				<p>{{ 'Je m\'appelle Julien ANDREOLI'|trans }}</p>
 			</div>
 		</div>
 	</div>
 	<div class="row">
 		<div class="frame">
 			<div class="frame-title">
-				<h1>{{ 'Loisirs'|trans }}</h1>
+				<h1>{{ 'A propos'|trans }}</h1>
 			</div>
 			<div class="frame-body">
 				<div class="carrousel">
-					<div class="carrousel-item">
-						<div class="row">
-							<h4 class="text-center">{{ 'La moto'|trans }}</h4>
-						</div>
-						<div class="row">
-							<div class="col-6">
-								<img class="img-100 round-img" src="{{ asset('img/moto.jpg') }}">
-							</div>
-							<div class="col-6">
-								<p>ceci est un test</p>
-							</div>
-						</div>
-					</div>
-					<div class="carrousel-item">
-						<div class="row">
-							<h4 class="text-center">{{ 'La montagne'|trans }}</h4>
-						</div>
-						<div class="row">
-							<div class="col-6">
-								<img class="img-100 round-img" src="{{ asset('img/montagne.jpg') }}">
-							</div>
-						</div>
-					</div>
 					<div class="carrousel-item">
 						<div class="row">
 							<h4 class="text-center">{{ 'Photographie'|trans }}</h4>
@@ -68,12 +45,35 @@
 								</div>
 							</div>
 							<div class="col-6">
-
+								test
 							</div>
 						</div>
 					</div>
-					<button class="button" onclick="changeItem('rec')">{{ '<<'|trans }}</button>
-					<button class="button" onclick="changeItem('adv')">{{ '>>'|trans }}</button>
+					<div class="carrousel-item">
+						<div class="row">
+							<h4 class="text-center">{{ 'La moto'|trans }}</h4>
+						</div>
+						<div class="row">
+							<div class="col-6">
+								<img class="img-100 round-img" src="{{ asset('img/moto.jpg') }}">
+							</div>
+							<div class="col-6">
+								<p>ceci est un test</p>
+							</div>
+						</div>
+					</div>
+					<div class="carrousel-item">
+						<div class="row">
+							<h4 class="text-center">{{ 'La montagne'|trans }}</h4>
+						</div>
+						<div class="row">
+							<div class="col-6">
+								<img class="img-100 round-img" src="{{ asset('img/montagne.jpg') }}">
+							</div>
+						</div>
+					</div>
+					<button class="button" onclick="changeItem('rec')">-</button>
+					<button class="button align-right" onclick="changeItem('adv')">+</button>
 				</div>
 			</div>
 		</div>
@@ -102,13 +102,13 @@
 		if (dir=="adv"){
 			index++;
 			if (index>carrouselItems.length-1){
-				index=0
+				index=0;
 			}
 		}
 		if (dir=="rec"){
 			index--;
 			if (index<0){
-				index=carrouselItems.length-1
+				index=carrouselItems.length-1;
 			}
 		} 
 		carrouselItems[index].classList.add("active");

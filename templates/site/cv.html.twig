@@ -5,26 +5,174 @@
 {% block body %}
 <div class="container">
     <div class="row">
-        <div class="frame">
+        <div class="openable-frame">
             <div class="frame-title">
-                <h1>{{ 'Education'|trans }}</h1>
+                <div class="row">
+                    <div class="col-6">
+                        <h1>{{ 'Education'|trans }}</h1>
+                    </div>
+                    <div class="col-6">
+                        <button class="button align-right" onclick="openframe(0)">+</button>
+                    </div>
+                </div>
             </div>
-            <div class="frame-body">
-                <p>
-                #TODO
-                </p>
+            <div class="openable-frame-body">
+                <div class="row">
+                    <div class="col-3">
+                        <h5>2018-2019 :</h5>
+                    </div>
+                    <div class="col-3">
+                        <p>{{ 'Licence pro S2IP (Systèmes Intelligents Interconnectés et Pilotés) en alternance'|trans }}</p>
+                        <p>Université Lyon 1</p>
+                    </div>
+                    <div class="col-3">
+                        <ul>
+                            <li>{{ 'Utilisation de différents logiciels d\’automatisme industriel : B&R, Codesys, Unity pro,…'|trans }}</li>
+                            <li>{{ 'Apprentissage IHM'|trans }}</li>
+                            <li>{{ 'Cours microcontrôleurs'|trans }}</li>
+                        </ul>
+                    </div>
+                    <div class="col-3">
+                        <img class="img-100" src="{{ asset('img/lyon1.png') }}" alt="lyon1.png">
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-3">
+                        <h5>2014-2016 :</h5>
+                    </div>
+                    <div class="col-3">
+                        <p>BTS CRSA (Conception Réalisation de Systèmes Automatisés)</p>
+                        <p>Lycée vaucanson - Grenoble</p>
+                    </div>
+                    <div class="col-3">
+                        <ul>
+                            <li>Apprentissage outils d’usinage</li>
+                            <li>Utilisation d’automates SCHNEIDER</li>
+                            <li>Projet automatisation de ligne de production de tuiles photovoltaïques</li>
+                        </ul>
+                    </div>
+                    <div class="col-3">
+                        <img class="img-75" src="{{ asset('img/vaucanson.jpg') }}" alt="vaucanson.jpg">
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-3">
+                        <h5>2013-2014 :</h5>
+                    </div>
+                    <div class="col-3">
+                        <p>Terminale Série STI2D (Sciences Technique de l’Industrie Développement Durable)</p>
+                        <p>Lycée du Gresivaudan Meylan</p>
+                    </div>
+                    <div class="col-3">
+                        <ul>
+                            <li>Option SIN : Systèmes Informatiques et Numériques</li>
+                            <li>Projet main robotique</li>
+                            <li>Bac mention AB</li>
+                        </ul>
+                    </div>
+                    <div class="col-3">
+                        <img class="img-100" src="{{ asset('img/lgm.png') }}" alt="lgm.png">
+                    </div>
+                </div>
             </div>
         </div>
     </div>
     <div class="row">
-        <div class="frame">
+        <div class="openable-frame">
             <div class="frame-title">
-                <h1>{{ 'Expériences professionelles'|trans }}</h1>
+                <div class="row">
+                    <div class="col-6">
+                        <h1>{{ 'Expériences professionelles'|trans }}</h1>
+                    </div>
+                    <div class="col-6">
+                        <button class="button align-right" onclick="openframe(1)">+</button>
+                    </div>
+                </div>
             </div>
-            <div class="frame-body">
-                <p>
-                #TODO
-                </p>
+            <div class="openable-frame-body">
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Juillet 2020 - Septembre 2021</h5>
+                    </div>
+                    <div class="col-4">
+                        <p>Automaticien</p>
+                        <p>Autoentrepreneur</p>
+                    </div>
+                    <div class="col-4">
+                        <ul>
+                            <li>Différentes missions d’intégration pour Renault (Cléon et Flins) et mission de maintenance à Douai</li>
+                        </ul>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Sept 2019 - Fevrier2020</h5>
+                    </div>
+                    <div class="col-4">
+                        <p>Automaticien en CDI</p>
+                        <p>ISY Technologies</p>
+                    </div>
+                    <div class="col-4">
+                        <ul>
+                            <li>Mise en service et carry over d’ilots automatisés (Standard SCUBE) de la cellule technique au Technocentre Renault Guyancourt et à l’usine de Flins (ilots Schneider)</li>
+                            <li>Réalisation de descriptifs techniques</li>
+                        </ul>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Mai 2017 - Sept 2019</h5>
+                    </div>
+                    <div class="col-4">
+                        <p>Automaticien en CDI</p>
+                        <p>SEGULA Technologies</p>
+                    </div>
+                    <div class="col-4">
+                        <ul>
+                            <li>Mise en service et maintenance d’îlots automatisés (Standard SCUBE) de la cellule technique au Technocentre Renault à Guyancourt</li>
+                            <li>Réalisation de descriptifs techniques</li>
+                            <li>Sept 2018 – Sept 2019 : Contrat en alternance pour licence pro S2IP</li>
+                        </ul>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Mai 2015 - Juillet 2015</h5>
+                    </div>
+                    <div class="col-4">
+                        <p>Automaticien en stage</p>
+                        <p>PROMALYON</p>
+                    </div>
+                    <div class="col-4">
+                        <ul>
+                            <li>Entreprise de création de fin de lignes de production automatisées à LYON</li>
+                            <li>Programmation d’un élévateur de palettes pour un Intermarché (SIEMENS)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="openable-frame">
+            <div class="frame-title">
+                <div class="row">
+                    <div class="col-6">
+                        <h1>{{ 'Compétences'|trans }}</h1>
+                    </div>
+                    <div class="col-6">
+                        <button class="button align-right" onclick="openframe(2)">+</button>
+                    </div>
+                </div>
+            </div>
+            <div class="openable-frame-body">
+                <div class="row">
+                </div>
             </div>
         </div>
     </div>
@@ -41,4 +189,28 @@
         </div>
     </div>
 </div>
+<script>
+    var index = 0
+    var elems = document.getElementsByClassName("openable-frame")
+    var openableFrames = []
+    for (elem in elems){
+        try{
+            if (elems[elem].classList.contains("openable-frame")){
+                openableFrames.push(elems[elem])
+            }
+        }
+        catch (error){
+            if (error instanceof TypeError){}
+            else{
+                throw error
+            }
+        }
+    }
+    openableFrames[index].getElementsByClassName("openable-frame-body")[0].classList.add("active")
+    function openframe(i){
+        openableFrames[index].getElementsByClassName("openable-frame-body")[0].classList.remove("active")
+        index = i
+        openableFrames[index].getElementsByClassName("openable-frame-body")[0].classList.add("active")
+    }
+</script>
 {% endblock %}
