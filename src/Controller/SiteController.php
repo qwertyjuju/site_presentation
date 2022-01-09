@@ -43,6 +43,13 @@ class SiteController extends AbstractController
         return $this->redirectToRoute("blog");
     }
     /**
+     * @Route("/projets")
+     */
+    public function projetsNoLocale(): Response
+    {
+        return $this->redirectToRoute("projets");
+    }
+    /**
      * @Route("/download", name="downloadNoLocale")
      */
     public function downloadNoLocale(): Response
@@ -101,5 +108,13 @@ class SiteController extends AbstractController
     {
         $response = new BinaryFileResponse("dl/cv.pdf");
         return $response;
+    }
+
+    /**
+     * @Route("/{_locale<%app.supported_locales%>}/projets", name="projets")
+     */
+    public function projets(): Response
+    {
+        return $this->render('site/projets.html.twig');
     }
 }
