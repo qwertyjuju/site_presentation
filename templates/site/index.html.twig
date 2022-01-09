@@ -1,6 +1,5 @@
 {% extends 'base.html.twig' %}
-
-{% block title %}Hello SiteController!{% endblock %}
+{% block title %}{{ 'Acceuil'|trans }}{% endblock %}
 
 {% block body %}
 <div class="container">
@@ -22,13 +21,23 @@
 			<div class="frame-body">
 				<div class="carrousel">
 					<div class="carrousel-item">
-						<h4 class="text-center">{{ 'La moto'|trans }}</h4>
-						<img class="img-50" src="{{ asset('img/moto.jpg') }}">
+						<div class="row">
+							<h4 class="text-center">{{ 'La moto'|trans }}</h4>
+						</div>
+						<div class="row">
+							<div class="col-6">
+								<img class="img-100" src="{{ asset('img/moto.jpg') }}">
+							</div>
+							<div class="col-6">
+								<p>ceci est un test</p>
+							</div>
+						</div>
 					</div>
 					<div class="carrousel-item">
 						<h6>{{ 'La montagne'|trans }}</h6>
 					</div>
-					<button onclick="changeItem()">test</button>
+					<button class="button" onclick="changeItem('adv')">advance</button>
+					<button class="button" onclick="changeItem('rec')">return</button>
 				</div>
 			</div>
 		</div>
@@ -52,12 +61,20 @@
 		}
 	}
 	carrouselItems[index].classList.add("active");
-	function changeItem(){
+	function changeItem(dir){
 		carrouselItems[index].classList.remove("active");
-		index++;
-		if (index>carrouselItems.length-1){
-			index=0
+		if (dir=="adv"){
+			index++;
+			if (index>carrouselItems.length-1){
+				index=0
+			}
 		}
+		if (dir=="rec"){
+			index--;
+			if (index<0){
+				index=carrouselItems.length-1
+			}
+		} 
 		carrouselItems[index].classList.add("active");
 	}
 </script>
