@@ -53,6 +53,38 @@
         <source>Lire la suite</source>
         <target>Continue reading</target>
       </trans-unit>
+      <trans-unit id="USqzxrm" resname="Education">
+        <source>Education</source>
+        <target>__Education</target>
+      </trans-unit>
+      <trans-unit id="0r9FyCz" resname="Expériences professionelles">
+        <source>Expériences professionelles</source>
+        <target>__Expériences professionelles</target>
+      </trans-unit>
+      <trans-unit id="XPVC.7k" resname="Telecharger le CV">
+        <source>Telecharger le CV</source>
+        <target>__Telecharger le CV</target>
+      </trans-unit>
+      <trans-unit id="KhD_66z" resname="Connecter">
+        <source>Connecter</source>
+        <target>__Connecter</target>
+      </trans-unit>
+      <trans-unit id=".0Ey_UH" resname="Connecter les entreprises et les usagers">
+        <source>Connecter les entreprises et les usagers</source>
+        <target>__Connecter les entreprises et les usagers</target>
+      </trans-unit>
+      <trans-unit id="rR1kKBg" resname="démarche scientifique">
+        <source>démarche scientifique</source>
+        <target>__démarche scientifique</target>
+      </trans-unit>
+      <trans-unit id="q06YPZr" resname="Choisir les solutions et les technologies adaptées">
+        <source>Choisir les solutions et les technologies adaptées</source>
+        <target>__Choisir les solutions et les technologies adaptées</target>
+      </trans-unit>
+      <trans-unit id="RJxp6CZ" resname="Proposer des solutions respectueuses de l'environnement">
+        <source>Proposer des solutions respectueuses de l'environnement</source>
+        <target>__Proposer des solutions respectueuses de l'environnement</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
