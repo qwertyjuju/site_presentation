@@ -4,12 +4,12 @@
 <div class="container">
     <div class="row">
         <!-- Administrer -->
-        <div class="col-4">
-            <div class="frame">
-                <div class="initial">
-                    <div class="frametitle">
-                        <h1>{{ 'Administrer'|trans }}</h1>
-                    </div>
+        <div class="frame">
+            <div class="initial">
+                <div class="frametitle">
+                    <h1>{{ 'Administrer'|trans }}</h1>
+                </div>
+                <div class="frame-body">
                     <p>{{ 'Administrer les réseaux et l\'internet'|trans }}</p>
                     <ul>
                         <li>
@@ -26,10 +26,12 @@
                         </li>
                     </ul>
                 </div>
-                <div class="anim">
-                    <div class="frametitle">
-                        <h1>{{ 'Administrer'|trans }}</h1>
-                    </div>
+            </div>
+            <div class="anim">
+                <div class="frametitle">
+                    <h1>{{ 'Administrer'|trans }}</h1>
+                </div>
+                <div class="frame-body">
                     <p>{{ 'Administrer les réseaux et l\'internet'|trans }}</p>
                     <ul>
                         <li>
@@ -45,17 +47,22 @@
                             {{ 'Assurer une veille technologique'|trans }}
                         </li>
                     </ul>
-                    <button style="justify-self: end;" onclick="window.location.href='/'">{{ 'Lire la suite'|trans }}</button>
+                    <h3>{{ 'Niveau'|trans }}</h3>
+                    <div class="progress bottom-margin">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
+    <div class="row">
         <!-- Connecter -->
-        <div class="col-4">
-            <div class="frame">
-                <div class="initial">
-                    <div class="frametitle">
-                        <h1>{{ 'Connecter'|trans }}</h1>
-                    </div>
+        <div class="frame">
+            <div class="initial">
+                <div class="frame-title">
+                    <h1>{{ 'Connecter'|trans }}</h1>
+                </div>
+                <div class="frame-body">
                     <p>{{ 'Connecter les entreprises et les usagers'|trans }}</p>
                     <ul>
                         <li>
@@ -69,10 +76,12 @@
                         </li>
                     </ul>
                 </div>
-                <div class="anim">
-                    <div class="frametitle">
-                        <h1>{{ 'Connecter'|trans }}</h1>
-                    </div>
+            </div>
+            <div class="anim">
+                <div class="frame-title">
+                    <h1>{{ 'Connecter'|trans }}</h1>
+                </div>
+                <div class="frame-body">
                     <p>{{ 'Connecter les entreprises et les usagers'|trans }}</p>
                     <ul>
                         <li>
@@ -85,17 +94,22 @@
                             {{ 'Proposer des solutions respectueuses de l\'environnement'|trans }}
                         </li>
                     </ul>
-                    <button style="justify-self: end;"  onclick="window.location.href='/'">{{ 'Lire la suite'|trans }}</button>
+                    <h3>{{ 'Niveau'|trans }}</h3>
+                    <div class="progress bottom-margin">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
+    <div class="row">
         <!-- Programmer -->
-        <div class="col-4">
-            <div class="frame">
-                <div class="initial">
-                    <div class="frametitle">
-                        <h1>{{ 'Programmer'|trans }}</h1>
-                    </div>
+        <div class="frame">
+            <div class="initial">
+                <div class="frame-title">
+                    <h1>{{ 'Programmer'|trans }}</h1>
+                </div>
+                <div class="frame-body">
                     <p>{{ 'Créer des outils et applications informatiques pour les réseaux et télécommunications'|trans }}</p>
                     <ul>
                         <li>
@@ -112,10 +126,12 @@
                         </li>
                     </ul>
                 </div>
-                <div class="anim">
-                    <div class="frametitle">
-                        <h1>{{ 'Programmer'|trans }}</h1>
-                    </div>
+            </div>
+            <div class="anim">
+                <div class="frame-title">
+                    <h1>{{ 'Programmer'|trans }}</h1>
+                </div>
+                <div class="frame-body">
                     <p>{{ 'Créer des outils et applications informatiques pour les réseaux et télécommunications'|trans }}</p>
                     <ul>
                         <li>
@@ -131,10 +147,30 @@
                             {{ 'Documenter le travail réalisé'|trans }}
                         </li>
                     </ul>
-                    <button style="justify-self: end;" onclick="window.location.href='/'">{{ 'Lire la suite'|trans }}</button>
+                    <h3>{{ 'Niveau'|trans }}</h3>
+                    <div class="progress bottom-margin">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script>
+    var progressbars = document.getElementsByClassName('progress-bar');
+    for (elementnb in progressbars){
+        try{
+            var value = progressbars[elementnb].getAttribute("aria-valuenow")
+            var result= "width: ".concat(value,"%")
+            progressbars[elementnb].setAttribute("style", result)
+        }
+        catch(error){
+            if (error instanceof TypeError){
+            }
+            else{
+                throw error
+            }
+        }
+    }
+</script>
 {% endblock %}

@@ -35,7 +35,13 @@ class SiteController extends AbstractController
     {
         return $this->redirectToRoute("cv");
     }
-
+    /**
+     * @Route("/blog")
+     */
+    public function blogoNoLocale(): Response
+    {
+        return $this->redirectToRoute("blog");
+    }
     /**
      * @Route("/download", name="downloadNoLocale")
      */
