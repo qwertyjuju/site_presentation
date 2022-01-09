@@ -64,3 +64,8 @@
 	height: 50%;
 	border-radius: 100%;
 }
+
+.navbar-top{
+	position: fixed;
+	top:0;
+}
