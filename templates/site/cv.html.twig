@@ -42,8 +42,8 @@
                         <h5>2014-2016 :</h5>
                     </div>
                     <div class="col-3">
-                        <p>BTS CRSA (Conception Réalisation de Systèmes Automatisés)</p>
-                        <p>Lycée vaucanson - Grenoble</p>
+                        <p>{{ 'BTS CRSA (Conception Réalisation de Systèmes Automatisés)'|trans }}</p>
+                        <p>{{ 'Lycée vaucanson - Grenoble'|trans }}</p>
                     </div>
                     <div class="col-3">
                         <ul>
@@ -269,7 +269,6 @@
     </div>
 </div>
 <script>
-    var index = 0
     var elems = document.getElementsByClassName("openable-frame")
     var openableFrames = []
     var progressbars = document.getElementsByClassName('progress-bar');
@@ -300,12 +299,14 @@
             }
         }
     }
-    openableFrames[index].getElementsByClassName("openable-frame-body")[0].classList.add("active")
+    openableFrames[0].getElementsByClassName("openable-frame-body")[0].classList.add("active");
     function openframe(i){
-        console.log(openableFrames[index].getElementsByClassName("openable-frame-body")[0])
-        openableFrames[index].getElementsByClassName("openable-frame-body")[0].classList.remove("active")
-        index = i
-        openableFrames[index].getElementsByClassName("openable-frame-body")[0].classList.add("active")
+        if(openableFrames[i].getElementsByClassName("openable-frame-body")[0].classList.contains("active")){
+            openableFrames[i].getElementsByClassName("openable-frame-body")[0].classList.remove("active");
+        }
+        else{
+            openableFrames[i].getElementsByClassName("openable-frame-body")[0].classList.add("active");
+        }
     }
 </script>
 {% endblock %}
