@@ -8,11 +8,27 @@
 			<div class="frame-title">
 				<h1>{{ 'Presentation'|trans }}</h1>
 			</div>
+			
 			<div class="frame-body">
+				<!--
 				<div class="row">
 					<div class="col-9">
 						<p>{{ 'Bonjour et bienvenue sur mon site'|trans }}</p>
 						<p>{{ 'Je m\'appelle Julien ANDREOLI'|trans }}</p>
+					</div>
+					<div class="col-3">
+						<img class="img-75 align-right" src="{{ asset('img/profil.png') }}">
+					</div>
+				</div>
+				-->
+				<div class="row">
+					<div class="col-9">
+						<div class="console">
+							<img src="{{ asset('img/console.png') }}">
+							<div class="console-content">
+								<p class="console-line">{{ 'Bonjour et bienvenue sur mon site'|trans }}</p>
+							</div>
+						</div>
 					</div>
 					<div class="col-3">
 						<img class="img-75 align-right" src="{{ asset('img/profil.png') }}">
@@ -87,38 +103,84 @@
 	</div>
 </div>
 <script>
-	var index=0;
-	var carrousel = document.getElementsByClassName("carrousel-item");
-	var carrouselItems = [];
-	for (element in carrousel){
-		try{
-			if (carrousel[element].classList.contains("carrousel-item")){
-				carrouselItems.push(carrousel[element]);
+	// Carrousel functions
+	var carIndex=0;
+	function initCarrousel(){
+		var carrousel = document.getElementsByClassName("carrousel-item");
+		var carrouselItems = [];
+		for (element in carrousel){
+			try{
+				if (carrousel[element].classList.contains("carrousel-item")){
+					carrouselItems.push(carrousel[element]);
+				}
+			}
+			catch(error){
+				if (error instanceof TypeError){}
+				else{
+					throw error;
+				}
 			}
 		}
-		catch(error){
-			if (error instanceof TypeError){}
-			else{
-				throw error
-			}
-		}
+		carrouselItems[carIndex].classList.add("active");
 	}
-	carrouselItems[index].classList.add("active");
 	function changeItem(dir){
-		carrouselItems[index].classList.remove("active");
+		carrouselItems[carIndex].classList.remove("active");
 		if (dir=="adv"){
-			index++;
-			if (index>carrouselItems.length-1){
-				index=0;
+			carIndex++;
+			if (carIndex>carrouselItems.length-1){
+				carIndex=0;
 			}
 		}
 		if (dir=="rec"){
-			index--;
-			if (index<0){
-				index=carrouselItems.length-1;
+			carIndex--;
+			if (carIndex<0){
+				carIndex=carrouselItems.length-1;
 			}
 		} 
-		carrouselItems[index].classList.add("active");
+		carrouselItems[carIndex].classList.add("active");
 	}
+
+	// Console functions
+	/*
+	var consIndex = 0;
+	var lines = [];
+	var consoleLinesElems = [];
+	var active = 0
+	function initConsole(){
+		var consoleLines = document.getElementsByClassName("console-line");
+		for(element in consoleLines){
+			try{
+				var line = consoleLines[element].textContent;
+				if (line != null){
+					lines.push(line);
+					consoleLines[element].textContent=""
+					consoleLinesElems.push(consoleLines[element])
+				}
+			}
+			catch(error){
+				if (error instanceof TypeError){
+				}
+				else{
+					throw error;
+				}
+			}
+		}
+		setInterval(drawConsole, 500)
+	}
+	function drawConsole(){
+		if (active==0){
+			consoleLinesElems[consIndex].classList.remove("active");
+			active=1;
+		}
+		else{
+			consoleLinesElems[consIndex].classList.add("active");
+			consoleLinesElems[consIndex].textContent = lines[0];
+			active=0;
+		}
+	}
+	initConsole();
+	initCarrousel();
+	*/
+
 </script>
 {% endblock %}

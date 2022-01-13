@@ -161,3 +161,22 @@ h1,h2,h3,h4,h5,h6{
 .align-right{
 	float:right;
 }
+
+.console{
+	width:100%;
+	height:100%;
+	display: inline-block;
+}
+
+.console img + .console-content{
+	position:absolute;
+	top:0%;
+}
+
+.console-content .console-line{
+	display: none;
+}
+
+.console-content .console-line.active{
+	display: block;
+}
