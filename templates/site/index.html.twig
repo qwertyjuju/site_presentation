@@ -8,7 +8,6 @@
 			<div class="frame-title">
 				<h1>{{ 'Presentation'|trans }}</h1>
 			</div>
-			
 			<div class="frame-body">
 				<!--
 				<div class="row">
@@ -24,9 +23,13 @@
 				<div class="row">
 					<div class="col-9">
 						<div class="console">
-							<img src="{{ asset('img/console.png') }}">
+							<img class="console-bg" src="{{ asset('img/console.png') }}">
 							<div class="console-content">
 								<p class="console-line">{{ 'Bonjour et bienvenue sur mon site'|trans }}</p>
+								<p class="console-line">{{ 'Je m\'appelle Julien ANDREOLI, j\'ai 26 ans et je suis actuellement en BUT Réseaux et telecommunications'|trans }}</p>
+								<p class="console-line">{{ 'Je m\'appelle Julien ANDREOLI, j\'ai 26 ans et je suis actuellement en BUT Réseaux et telecommunications'|trans }}</p>
+								<p class="console-line">{{ 'Je m\'appelle Julien ANDREOLI, j\'ai 26 ans et je suis actuellement en BUT Réseaux et telecommunications'|trans }}</p>
+								<p class="console-line">{{ 'Je m\'appelle Julien ANDREOLI, j\'ai 26 ans et je suis actuellement en BUT Réseaux et telecommunications'|trans }}</p>
 							</div>
 						</div>
 					</div>
@@ -105,9 +108,10 @@
 <script>
 	// Carrousel functions
 	var carIndex=0;
+	var carrouselItems = [];
 	function initCarrousel(){
+		console.log('initialisation of carrousel')
 		var carrousel = document.getElementsByClassName("carrousel-item");
-		var carrouselItems = [];
 		for (element in carrousel){
 			try{
 				if (carrousel[element].classList.contains("carrousel-item")){
@@ -124,6 +128,7 @@
 		carrouselItems[carIndex].classList.add("active");
 	}
 	function changeItem(dir){
+		console.log('change item')
 		carrouselItems[carIndex].classList.remove("active");
 		if (dir=="adv"){
 			carIndex++;
@@ -139,20 +144,20 @@
 		} 
 		carrouselItems[carIndex].classList.add("active");
 	}
-
 	// Console functions
-	/*
-	var consIndex = 0;
+	var lineIndex = 0;
+	var drawIndex= 3;
 	var lines = [];
 	var consoleLinesElems = [];
-	var active = 0
+	var interval= null
 	function initConsole(){
+		console.log('initialisation of console')
 		var consoleLines = document.getElementsByClassName("console-line");
 		for(element in consoleLines){
 			try{
 				var line = consoleLines[element].textContent;
 				if (line != null){
-					lines.push(line);
+					lines.push(">>> ".concat(line));
 					consoleLines[element].textContent=""
 					consoleLinesElems.push(consoleLines[element])
 				}
@@ -165,22 +170,48 @@
 				}
 			}
 		}
-		setInterval(drawConsole, 500)
-	}
+		interval=setInterval(drawConsole, 75);
+	} 
 	function drawConsole(){
-		if (active==0){
-			consoleLinesElems[consIndex].classList.remove("active");
-			active=1;
+		var line = null
+		if (consoleLinesElems[lineIndex].classList.contains("active")){
+			if (drawIndex<=lines[lineIndex].length){
+				if (drawIndex==lines[lineIndex].length){
+					line=lines[lineIndex].substring(0,drawIndex)
+				}
+				else{
+					line=lines[lineIndex].substring(0,drawIndex).concat("&#9646;");
+				}
+				consoleLinesElems[lineIndex].innerHTML = line
+				drawIndex++;
+			}
+			else{
+				lineIndex++;
+				drawIndex=3;
+				if (lineIndex>=consoleLinesElems.length){
+					clearInterval(interval)
+					interval=setInterval(drawConsole2, 400);
+				}
+			}
 		}
 		else{
-			consoleLinesElems[consIndex].classList.add("active");
-			consoleLinesElems[consIndex].textContent = lines[0];
-			active=0;
+			consoleLinesElems[lineIndex].classList.add("active");
+			line=lines[lineIndex].substring(0,drawIndex+1).concat("&#9646;");
+			consoleLinesElems[lineIndex].innerHTML = line
+			drawIndex++;
 		}
 	}
-	initConsole();
+	function drawConsole2(){
+		var line=null
+		if (lines[lineIndex-1]!=consoleLinesElems[lineIndex-1].textContent){
+			line=lines[lineIndex-1]
+		}
+		else{
+			line=lines[lineIndex-1].concat("&#9646;");
+		}
+		consoleLinesElems[lineIndex-1].innerHTML = line
+	}
 	initCarrousel();
-	*/
-
+	initConsole();
 </script>
 {% endblock %}
