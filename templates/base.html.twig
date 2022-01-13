@@ -39,21 +39,21 @@
 				<div class="collapse navbar-collapse" id="navbarColor03">
 					<ul class="navbar-nav me-auto">
 						<li class="nav-item">
-						<a class="nav-link active" href="/">{{ 'Accueil'|trans }}</a>
+							<a class="nav-link active" href="/">{{ 'Accueil'|trans }}</a>
 						</li>
 						<li class="nav-item">
-						<a class="nav-link active" href="/portfolio">Portfolio
-							<span class="visually-hidden">(current)</span>
-						</a>
+							<a class="nav-link active" href="/portfolio">Portfolio
+								<span class="visually-hidden">(current)</span>
+							</a>
 						</li>
 						<li class="nav-item">
-						<a class="nav-link" href="/cv">{{ 'CV'|trans }}</a>
+							<a class="nav-link" href="/cv">{{ 'CV'|trans }}</a>
 						</li>
 						<li class="nav-item">
-						<a class="nav-link hidden" href="/blog">{{ 'Blog'|trans }}</a>
+							<a class="nav-link hidden" href="/blog">{{ 'Blog'|trans }}</a>
 						</li>
 						<li class="nav-item">
-						<a class="nav-link hidden" href="/projets">{{ 'Projets'|trans }}</a>
+							<a class="nav-link hidden" href="/projets">{{ 'Projets'|trans }}</a>
 						</li>
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
@@ -63,18 +63,26 @@
 							  <a class="dropdown-item" href="{{ path('accueil', {_locale: 'fr'}) }}">fr</a>
 							  <a class="dropdown-item" href="{{ path('accueil', {_locale: 'en'}) }}">en</a>
 							</div>
-						  </li>
+						</li>
 					</ul>
 				</div>
 			</div>
 		</nav>
         {% block body %}{% endblock %}
 		<footer class="bg-darkgray2">
-			<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">
-				<img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" />
-			</a>
-			<br>
-			This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.
+			<div class="row">
+				<div class="col-6">
+					
+				</div>
+				<div class="col-6">
+					<div class="align-right">
+						<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
+							<img alt="Licence Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" />
+						</a><br />
+						{{ 'Ce(tte) œuvre est mise à disposition selon les termes de la'|trans }} <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"> {{ 'Licence Creative Commons Attribution - Pas d’Utilisation Commerciale - Partage dans les Mêmes Conditions 4.0 International'|trans }}</a>..
+					</div>
+				</div>
+			</div>
 		</footer>
 		<script src="{{ asset('js/jquery.min.js') }}"></script>
 		<script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>

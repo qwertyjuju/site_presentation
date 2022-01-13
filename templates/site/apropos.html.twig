@@ -1,0 +1,116 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="frame">
+            <div class="frame-title">
+                <h1>{{ 'Mes passions'|trans }}</h1>
+            </div>
+            <div class="frame-body">
+                <div class="carrousel">
+                    <div class="carrousel-item">
+                        <div class="row">
+                            <h4 class="text-center">{{ 'Photographie'|trans }}</h4>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <img class="img-100 round-img" src="{{ asset('img/photo1.jpg') }}">
+                                    </div>
+                                    <div class="col-6">
+                                        <img class="img-100 round-img" src="{{ asset('img/photo2.jpg') }}">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <img class="img-100 round-img" src="{{ asset('img/photo3.jpg') }}">
+                                    </div>
+                                    <div class="col-6">
+                                        <img class="img-100 round-img" src="{{ asset('img/photo4.jpg') }}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="carrousel-content">
+                                    <p>{{ 'Depuis tout petit, je suis passioné de nature. Quand j\'ai le temps je pars en montagne pour prendre de belles photos de la nature'|trans }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carrousel-item">
+                        <div class="row">
+                            <h4 class="text-center">{{ 'La moto'|trans }}</h4>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <img class="img-100 round-img" src="{{ asset('img/moto.jpg') }}">
+                            </div>
+                            <div class="col-6">
+                                <p>{{ 'C\'est en 2018 que je passe mon permis moto et que j\'achete ma première moto: une yamaha MT07. Depuis j\'ai voyager un peu partout en France'|trans }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carrousel-item">
+                        <div class="row">
+                            <h4 class="text-center">{{ 'La montagne'|trans }}</h4>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <img class="img-100 round-img" src="{{ asset('img/montagne.jpg') }}">
+                            </div>
+                            <div class="col-6">
+                                <p>{{ 'Je suis né à Grenoble, ville entourée de montagnes. Étant petit, j\'adorais déja faire des ballades en montagnes. Aujourd\'hui encore je continue à aller en montagne quand je peux.'|trans }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="button" onclick="changeItem('rec')">-</button>
+                    <button class="button align-right" onclick="changeItem('adv')">+</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+	// Carrousel functions
+	var carIndex=0;
+	var carrouselItems = [];
+	function initCarrousel(){
+		console.log('initialisation of carrousel')
+		var carrousel = document.getElementsByClassName("carrousel-item");
+		for (element in carrousel){
+			try{
+				if (carrousel[element].classList.contains("carrousel-item")){
+					carrouselItems.push(carrousel[element]);
+				}
+			}
+			catch(error){
+				if (error instanceof TypeError){}
+				else{
+					throw error;
+				}
+			}
+		}
+		carrouselItems[carIndex].classList.add("active");
+	}
+	function changeItem(dir){
+		console.log('change item')
+		carrouselItems[carIndex].classList.remove("active");
+		if (dir=="adv"){
+			carIndex++;
+			if (carIndex>carrouselItems.length-1){
+				carIndex=0;
+			}
+		}
+		if (dir=="rec"){
+			carIndex--;
+			if (carIndex<0){
+				carIndex=carrouselItems.length-1;
+			}
+		} 
+		carrouselItems[carIndex].classList.add("active");
+	}
+    initCarrousel();
+</script>
+{% endblock %}

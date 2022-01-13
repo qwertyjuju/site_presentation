@@ -50,6 +50,13 @@ class SiteController extends AbstractController
         return $this->redirectToRoute("projets");
     }
     /**
+     * @Route("/apropos")
+     */
+    public function aproposNoLocale(): Response
+    {
+        return $this->redirectToRoute("apropos");
+    }
+    /**
      * @Route("/download", name="downloadNoLocale")
      */
     public function downloadNoLocale(): Response
@@ -64,6 +71,13 @@ class SiteController extends AbstractController
     {
         return $this->render('site/index.html.twig',[
         ]);
+    }
+    /**
+     * @Route("/{_locale<%app.supported_locales%>}/apropos", name="apropos")
+     */
+	public function apropos(): Response
+    {
+        return $this->render('site/apropos.html.twig');
     }
 	/**
      * @Route("/{_locale<%app.supported_locales%>}/portfolio", name="portfolio")
