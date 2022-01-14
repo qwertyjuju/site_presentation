@@ -15,7 +15,8 @@
 							<img class="console-bg" src="{{ asset('img/console.png') }}">
 							<div class="console-content">
 								<p class="console-line">{{ 'Bonjour et bienvenue sur mon site'|trans }}</p>
-								<p class="console-line">{{ 'Je m\'appelle Julien ANDREOLI, j\'ai 26 ans et je suis actuellement en BUT Réseaux et telecommunications'|trans }}</p>
+								<p class="console-line">{{ 'Je m\'appelle Julien ANDREOLI, j\'ai 26 ans. Je suis diplomé d\'une licence pro en automatisme industriel, et je suis actuellement en reconversion dans les réseaux et télécommunications'|trans }}</p>
+								<p class="console-line">{{ 'Vous trouverez sur ce site mon CV ainsi que mon portfolio.'|trans }}</p>
 							</div>
 						</div>
 					</div>
@@ -31,7 +32,7 @@
 	<div class="row">
 		<div class="frame">
 			<div class="frame-title">
-				<h1>{{ ' Me contacter'|trans }}</h1>
+				<h1>{{ 'Me contacter'|trans }}</h1>
 			</div>
 			<div class="frame-body">
 				<form>
@@ -43,7 +44,7 @@
 					<input type="text" id="mail" name="mail" required><br>
 					<label for="message">{{ 'Message:'|trans }}</label><br>
 					<textarea name="message" cols="50">{{ 'tapez votre message ici...'|trans }}</textarea><br>
-					<input class="button" type="submit" value="Valider">
+					<input class="button" type="submit" value="{{ 'Valider'|trans }}">
 				</form>
 			</div>
 		</div>

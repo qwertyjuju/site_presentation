@@ -27,15 +27,15 @@
       </trans-unit>
       <trans-unit id="Udt6jUw" resname="Administrer">
         <source>Administrer</source>
-        <target>__Administrer</target>
+        <target>Administer</target>
       </trans-unit>
       <trans-unit id="4KeYFcx" resname="Administrer les réseaux et l'internet">
         <source>Administrer les réseaux et l'internet</source>
-        <target>__Administrer les réseaux et l'internet</target>
+        <target>Administer networks and the internet</target>
       </trans-unit>
       <trans-unit id="Si3L06V" resname="Choisir des solutions et des technologies adaptées">
         <source>Choisir des solutions et des technologies adaptées</source>
-        <target>__Choisir des solutions et des technologies adaptées</target>
+        <target>Choose adapted technologies and solutions</target>
       </trans-unit>
       <trans-unit id="TUxIr8o" resname="Respecter les principes fondamentaux de la sécurité informatique">
         <source>Respecter les principes fondamentaux de la sécurité informatique</source>
@@ -84,6 +84,200 @@
       <trans-unit id="RJxp6CZ" resname="Proposer des solutions respectueuses de l'environnement">
         <source>Proposer des solutions respectueuses de l'environnement</source>
         <target>__Proposer des solutions respectueuses de l'environnement</target>
+      </trans-unit>
+      <trans-unit id="Da1htjG" resname="Projets">
+        <source>Projets</source>
+        <target>Projects</target>
+      </trans-unit>
+      <trans-unit id="aZ7.kvL" resname="Mes réseaux sociaux">
+        <source>Mes réseaux sociaux</source>
+        <target>my social networks</target>
+      </trans-unit>
+      <trans-unit id="jzjj69B" resname="Ce(tte) œuvre est mise à disposition selon les termes de la">
+        <source>Ce(tte) œuvre est mise à disposition selon les termes de la</source>
+        <target>This work is licensed under a </target>
+      </trans-unit>
+      <trans-unit id="y4DFN5a" resname="Licence Creative Commons Attribution - Pas d'Utilisation Commerciale - Partage dans les Mêmes Conditions 4.0 International">
+        <source>Licence Creative Commons Attribution - Pas d'Utilisation Commerciale - Partage dans les Mêmes Conditions 4.0 International</source>
+        <target>Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</target>
+      </trans-unit>
+      <trans-unit id="YSHyAf3" resname="Bienvenue">
+        <source>Bienvenue</source>
+        <target>Welcome</target>
+      </trans-unit>
+      <trans-unit id="Cqe7OxK" resname="Mes passions">
+        <source>Mes passions</source>
+        <target>my hobbies</target>
+      </trans-unit>
+      <trans-unit id="uHUo.JO" resname="Photographie">
+        <source>Photographie</source>
+        <target>Photography</target>
+      </trans-unit>
+      <trans-unit id="5R.NaNe" resname="Depuis tout petit, je suis passioné de nature. Quand j'ai le temps je pars en montagne pour prendre de belles photos de la nature">
+        <source>Depuis tout petit, je suis passioné de nature. Quand j'ai le temps je pars en montagne pour prendre de belles photos de la nature</source>
+        <target>Since I was little, I have been passionate about nature. When I have time I go to the mountains to take beautiful photos of nature</target>
+      </trans-unit>
+      <trans-unit id="Nxjdkgs" resname="La moto">
+        <source>La moto</source>
+        <target>Motorcycles</target>
+      </trans-unit>
+      <trans-unit id="UrhTWMz" resname="C'est en 2018 que je passe mon permis moto et que j'achete ma première moto: une yamaha MT07. Depuis j'ai voyager un peu partout en France">
+        <source>C'est en 2018 que je passe mon permis moto et que j'achete ma première moto: une yamaha MT07. Depuis j'ai voyager un peu partout en France</source>
+        <target>In 2018, I passed my motorcycle license and bought my first motorcycle: a yamaha MT07. Since then I have traveled all over France</target>
+      </trans-unit>
+      <trans-unit id="Nl0gORt" resname="La montagne">
+        <source>La montagne</source>
+        <target>Mountains</target>
+      </trans-unit>
+      <trans-unit id="jZ_AaWG" resname="Je suis né à Grenoble, ville entourée de montagnes. Étant petit, j'adorais déja faire des ballades en montagnes. Aujourd'hui encore je continue à aller en montagne quand je peux.">
+        <source>Je suis né à Grenoble, ville entourée de montagnes. Étant petit, j'adorais déja faire des ballades en montagnes. Aujourd'hui encore je continue à aller en montagne quand je peux.</source>
+        <target>I was born in Grenoble, city ​​surrounded by mountains. When I was little, I already loved going for walks in the mountains. Even today I continue to go to the mountains when I can.</target>
+      </trans-unit>
+      <trans-unit id="HIsteh4" resname="Licence pro S2IP (Systèmes Intelligents Interconnectés et Pilotés) en alternance">
+        <source>Licence pro S2IP (Systèmes Intelligents Interconnectés et Pilotés) en alternance</source>
+        <target>__Licence pro S2IP (Systèmes Intelligents Interconnectés et Pilotés) en alternance</target>
+      </trans-unit>
+      <trans-unit id="AEai9Yv" resname="Utilisation de différents logiciels d’automatisme industriel : B&amp;R, Codesys, Unity pro,…">
+        <source>Utilisation de différents logiciels d’automatisme industriel : B&amp;R, Codesys, Unity pro,…</source>
+        <target><![CDATA[__Utilisation de différents logiciels d’automatisme industriel : B&R, Codesys, Unity pro,…]]></target>
+      </trans-unit>
+      <trans-unit id="f4njSmJ" resname="Apprentissage IHM">
+        <source>Apprentissage IHM</source>
+        <target>__Apprentissage IHM</target>
+      </trans-unit>
+      <trans-unit id="0AM_se2" resname="Cours microcontrôleurs">
+        <source>Cours microcontrôleurs</source>
+        <target>__Cours microcontrôleurs</target>
+      </trans-unit>
+      <trans-unit id="jZeMqgI" resname="BTS CRSA (Conception Réalisation de Systèmes Automatisés)">
+        <source>BTS CRSA (Conception Réalisation de Systèmes Automatisés)</source>
+        <target>__BTS CRSA (Conception Réalisation de Systèmes Automatisés)</target>
+      </trans-unit>
+      <trans-unit id="j9rdDFa" resname="Lycée vaucanson - Grenoble">
+        <source>Lycée vaucanson - Grenoble</source>
+        <target>__Lycée vaucanson - Grenoble</target>
+      </trans-unit>
+      <trans-unit id="QTkjKFo" resname="Compétences">
+        <source>Compétences</source>
+        <target>__Compétences</target>
+      </trans-unit>
+      <trans-unit id="nov0xcP" resname="Présentation">
+        <source>Présentation</source>
+        <target>Presentation</target>
+      </trans-unit>
+      <trans-unit id="VDj17ds" resname="Bonjour et bienvenue sur mon site">
+        <source>Bonjour et bienvenue sur mon site</source>
+        <target>Hello and welcome on my website</target>
+      </trans-unit>
+      <trans-unit id="Z8_HAtW" resname="Je m'appelle Julien ANDREOLI, j'ai 26 ans. Je suis diplomé d'une licence pro en automatisme industriel, et je suis actuellement en reconversion dans les réseaux et télécommunications">
+        <source>Je m'appelle Julien ANDREOLI, j'ai 26 ans. Je suis diplomé d'une licence pro en automatisme industriel, et je suis actuellement en reconversion dans les réseaux et télécommunications</source>
+        <target>My name is Julien ANDREOLI, I'm 26 years old. I graduated from a licence in industrial automation, and I am currently retraining in networks and telecommunications</target>
+      </trans-unit>
+      <trans-unit id="eu2N672" resname="Vous trouverez sur ce site mon CV ainsi que mon portfolio.">
+        <source>Vous trouverez sur ce site mon CV ainsi que mon portfolio.</source>
+        <target>Here, you'll find my CV and my portfolio</target>
+      </trans-unit>
+      <trans-unit id="KyZR9lw" resname="A Propos">
+        <source>A Propos</source>
+        <target>ABOUT</target>
+      </trans-unit>
+      <trans-unit id="oITk4fN" resname="Me contacter">
+        <source>Me contacter</source>
+        <target>Contact</target>
+      </trans-unit>
+      <trans-unit id="7EpRwVp" resname="Nom:">
+        <source>Nom:</source>
+        <target>Last Name:</target>
+      </trans-unit>
+      <trans-unit id="L7._h4E" resname="Prenom:">
+        <source>Prenom:</source>
+        <target>first name:</target>
+      </trans-unit>
+      <trans-unit id="WHhHO1z" resname="Mail:">
+        <source>Mail:</source>
+        <target>Mail:</target>
+      </trans-unit>
+      <trans-unit id="9TlPcnn" resname="Message:">
+        <source>Message:</source>
+        <target>Message:</target>
+      </trans-unit>
+      <trans-unit id="Nsh1UZ6" resname="tapez votre message ici...">
+        <source>tapez votre message ici...</source>
+        <target>Write youre message here...</target>
+      </trans-unit>
+      <trans-unit id="K1EE9fw" resname="Niveau">
+        <source>Niveau</source>
+        <target>Level</target>
+      </trans-unit>
+      <trans-unit id="yGkjyqz" resname="Programmer">
+        <source>Programmer</source>
+        <target>__Programmer</target>
+      </trans-unit>
+      <trans-unit id="za0UExD" resname="Créer des outils et applications informatiques pour les réseaux et télécommunications">
+        <source>Créer des outils et applications informatiques pour les réseaux et télécommunications</source>
+        <target>__Créer des outils et applications informatiques pour les réseaux et télécommunications</target>
+      </trans-unit>
+      <trans-unit id="8Lf8D8Y" resname="Choisir les outils de développement adaptés">
+        <source>Choisir les outils de développement adaptés</source>
+        <target>__Choisir les outils de développement adaptés</target>
+      </trans-unit>
+      <trans-unit id="8hI4Wql" resname="Utiliser les outils numériques à bon escient">
+        <source>Utiliser les outils numériques à bon escient</source>
+        <target>__Utiliser les outils numériques à bon escient</target>
+      </trans-unit>
+      <trans-unit id="X3DX1vJ" resname="intégrer les problématiques de sécurité">
+        <source>intégrer les problématiques de sécurité</source>
+        <target>__intégrer les problématiques de sécurité</target>
+      </trans-unit>
+      <trans-unit id="gqCKcoo" resname="Documenter le travail réalisé">
+        <source>Documenter le travail réalisé</source>
+        <target>__Documenter le travail réalisé</target>
+      </trans-unit>
+      <trans-unit id="K1w9JnI" resname="Contact">
+        <source>Contact</source>
+        <target>My Contact</target>
+      </trans-unit>
+      <trans-unit id="3BqDPNG" resname="mail:">
+        <source>mail:</source>
+        <target>mail:</target>
+      </trans-unit>
+      <trans-unit id="L5x7uCf" resname="tel:">
+        <source>tel:</source>
+        <target>phone:</target>
+      </trans-unit>
+      <trans-unit id="GOVCPwm" resname="Qui suis-je ?">
+        <source>Qui suis-je ?</source>
+        <target>__Qui suis-je ?</target>
+      </trans-unit>
+      <trans-unit id="eOMdHmD" resname="Diplomé d'une licence professionelle en automatisme industriel, j'ai travaillé pendant quatres ans pour différents préstataires de Renault en tant qu'automaticien d'integration. &#10;                        En 2021, j'ai décidé de changer de voie et de me réorienter en réseaux et télécommunications.">
+        <source>Diplomé d'une licence professionelle en automatisme industriel, j'ai travaillé pendant quatres ans pour différents préstataires de Renault en tant qu'automaticien d'integration. 
+                        En 2021, j'ai décidé de changer de voie et de me réorienter en réseaux et télécommunications.</source>
+        <target>__Diplomé d'une licence professionelle en automatisme industriel, j'ai travaillé pendant quatres ans pour différents préstataires de Renault en tant qu'automaticien d'integration. 
+                        En 2021, j'ai décidé de changer de voie et de me réorienter en réseaux et télécommunications.</target>
+      </trans-unit>
+      <trans-unit id="FWNLpku" resname="Configurer les fonctions de base du réseau local">
+        <source>Configurer les fonctions de base du réseau local</source>
+        <target>__Configurer les fonctions de base du réseau local</target>
+      </trans-unit>
+      <trans-unit id="aE.l18b" resname="Savoir identifier les dysfonctionnements du reseau local">
+        <source>Savoir identifier les dysfonctionnements du reseau local</source>
+        <target>__Savoir identifier les dysfonctionnements du reseau local</target>
+      </trans-unit>
+      <trans-unit id="0aoODOD" resname="Déployer des supports de transmission">
+        <source>Déployer des supports de transmission</source>
+        <target>__Déployer des supports de transmission</target>
+      </trans-unit>
+      <trans-unit id="oJ6qrGM" resname="Utiliser un système informatique et ses outils">
+        <source>Utiliser un système informatique et ses outils</source>
+        <target>__Utiliser un système informatique et ses outils</target>
+      </trans-unit>
+      <trans-unit id="fKuuGSZ" resname="Traduire un algorithme, dans un langage et pour un environnement donné">
+        <source>Traduire un algorithme, dans un langage et pour un environnement donné</source>
+        <target>__Traduire un algorithme, dans un langage et pour un environnement donné</target>
+      </trans-unit>
+      <trans-unit id="YmunqJ." resname="Valider">
+        <source>Valider</source>
+        <target>Validation</target>
       </trans-unit>
     </body>
   </file>

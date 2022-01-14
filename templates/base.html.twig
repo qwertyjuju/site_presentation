@@ -5,6 +5,8 @@
         <title>{% block title %}{{ 'Bienvenue'|trans }}{% endblock %}</title>
 		<!-- data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg> -->
         <link rel="icon" href="{{ asset('img/icon2.jpg') }}">
+		<!--link rel="stylesheet" href="{{ asset('font-awesome.css') }}"-->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		<link rel="stylesheet" href="{{ asset('css/fonts.css') }}">
 		<link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
 		<link rel="stylesheet" href="{{ asset('css/csssite.css') }}">
@@ -60,8 +62,8 @@
 								{{ app.request.locale|locale_name(app.request.locale) }}
 							</a>
 							<div class="dropdown-menu">
-							  <a class="dropdown-item" href="{{ path('accueil', {_locale: 'fr'}) }}">fr</a>
-							  <a class="dropdown-item" href="{{ path('accueil', {_locale: 'en'}) }}">en</a>
+							  <a class="dropdown-item" href="{{ path(app.request.attributes.get('_route'), {_locale: 'fr'}) }}">fr</a>
+							  <a class="dropdown-item" href="{{ path(app.request.attributes.get('_route'), {_locale: 'en'}) }}">en</a>
 							</div>
 						</li>
 					</ul>
@@ -72,14 +74,15 @@
 		<footer class="bg-darkgray2">
 			<div class="row">
 				<div class="col-6">
-					
+					<h3>{{ 'Mes réseaux sociaux'|trans }}</h3>
+					<a href="https://github.com/qwertyjuju" class="fa fa-github"></a>
+					<a href="https://www.linkedin.com/in/julien-andreoli-73974517b/" class="fa fa-linkedin"></a>
 				</div>
 				<div class="col-6">
-					<div class="align-right">
-						<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
-							<img alt="Licence Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" />
-						</a><br />
-						{{ 'Ce(tte) œuvre est mise à disposition selon les termes de la'|trans }} <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"> {{ 'Licence Creative Commons Attribution - Pas d’Utilisation Commerciale - Partage dans les Mêmes Conditions 4.0 International'|trans }}</a>..
+					<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
+						<img class="align-right" alt="Licence Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" />
+					</a><br />
+					{{ 'Ce(tte) œuvre est mise à disposition selon les termes de la'|trans }} <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"> {{ 'Licence Creative Commons Attribution - Pas d\'Utilisation Commerciale - Partage dans les Mêmes Conditions 4.0 International'|trans }}</a>..
 					</div>
 				</div>
 			</div>
