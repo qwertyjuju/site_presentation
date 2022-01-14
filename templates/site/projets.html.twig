@@ -1,4 +1,55 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-<img src="{{ asset('img/en-construction.png') }}">
+<div class="container">
+    <div class="row">
+        <div class="openable-frame">
+            <div class="frame-title">
+                <div class="row">
+                    <div class="col-6">
+                        <h1>{{ 'Projet Pygame'|trans }}</h1>
+                    </div>
+                    <div class="col-6">
+                        <button class="button align-right" onclick="openframe(0)">-/+</button>
+                    </div>
+                </div>
+            </div>
+            <div class="openable-frame-body">
+                <img class="resp_img" src="{{ asset('img/PygameLogo.png') }}">
+                <h3>{{ 'Présentation'|trans }}</h3>
+                <p>{{ 'Pygame est une librairie python permettant de faire des interfaces graphiques rapidement et simplement. Pygame est basé sur SDL (librairie en C).
+                    Elle est très courament utilisé pour faire des petits jeux 2D.'|trans }}
+                </p>
+                <p>{{ 'Pour approfondir mes connaissances en programmation, notamment en programmation orientée objet, j\'ai décider de faire un 
+                    petit projet de moteur de jeu avec pygame.'|trans }}</p>
+                <button class="button" onclick="window.location.href='https://github.com/qwertyjuju/pygame-engine'"><h4>{{ 'lien github'|trans }}</h4></button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var elems = document.getElementsByClassName("openable-frame")
+    var openableFrames = []
+    for (elemnb in elems){
+        try{
+            if (elems[elemnb].classList.contains("openable-frame")){
+                openableFrames.push(elems[elemnb])
+            }
+        }
+        catch (error){
+            if (error instanceof TypeError){}
+            else{
+                throw error
+            }
+        }
+    }
+    openableFrames[0].getElementsByClassName("openable-frame-body")[0].classList.add("active");
+    function openframe(i){
+        if(openableFrames[i].getElementsByClassName("openable-frame-body")[0].classList.contains("active")){
+            openableFrames[i].getElementsByClassName("openable-frame-body")[0].classList.remove("active");
+        }
+        else{
+            openableFrames[i].getElementsByClassName("openable-frame-body")[0].classList.add("active");
+        }
+    }
+</script>
 {% endblock %}
