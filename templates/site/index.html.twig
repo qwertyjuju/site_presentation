@@ -61,21 +61,13 @@
 	function initConsole(){
 		console.log('initialisation of console')
 		var consoleLines = document.getElementsByClassName("console-line");
+		console.log(consoleLines)
 		for(element in consoleLines){
-			try{
-				var line = consoleLines[element].textContent;
-				if (line != null){
-					lines.push(">>> ".concat(line));
-					consoleLines[element].textContent=""
-					consoleLinesElems.push(consoleLines[element])
-				}
-			}
-			catch(error){
-				if (error instanceof TypeError){
-				}
-				else{
-					throw error;
-				}
+			var line = consoleLines[element].textContent;
+			if (line != null){
+				lines.push(">>> ".concat(line));
+				consoleLines[element].textContent=""
+				consoleLinesElems.push(consoleLines[element])
 			}
 		}
 		interval=setInterval(drawConsole, 75);

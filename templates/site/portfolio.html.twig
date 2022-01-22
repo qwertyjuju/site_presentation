@@ -165,20 +165,11 @@
     </div>
 </div>
 <script>
-    var progressbars = document.getElementsByClassName('progress-bar');
+    var progressbars = Array.from(document.getElementsByClassName('progress-bar'));
     for (elementnb in progressbars){
-        try{
-            var value = progressbars[elementnb].getAttribute("aria-valuenow")
-            var result= "width: ".concat(value,"%")
-            progressbars[elementnb].setAttribute("style", result)
-        }
-        catch(error){
-            if (error instanceof TypeError){
-            }
-            else{
-                throw error
-            }
-        }
+        var value = progressbars[elementnb].getAttribute("aria-valuenow")
+        var result= "width: ".concat(value,"%")
+        progressbars[elementnb].setAttribute("style", result)
     }
 </script>
 {% endblock %}
