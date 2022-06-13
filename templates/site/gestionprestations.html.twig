@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ 'Gestion prestations'|trans }}{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="frame">
+        <div class="frame-title">				
+            <h1>{{ 'Ajout Prestation'|trans }}</h1>
+		</div>
+        <div class="frame-body">
+            <form action="/ajout_prestation" method="POST">
+                <div>
+                    <label for="staticNom">Nom prestation</label><br>
+                    <input type="text" class="string" id="staticNom" name="Nom" required><br>
+                </div>
+                <div>
+                    <label for="staticDescription">Description</label><br>
+                    <textarea id="staticDescription" class="full-width" name="Description"></textarea><br>
+                </div>
+                <div>
+                    <label for="staticImage" >Image</label><br>
+                    <input type="text" class="string" id="staticImage" name="Image"><br>
+                </div>
+                <div>
+                    <label for="staticPrix">Prix</label><br>
+                    <input type="number" step="0.01" id="staticPrix" name="Prix" required><br>
+                </div>
+                <button type="submit" class="button">Ajout prestation</button>
+            </form>
+        </div>
+    </div>
+    <div class="frame">
+        <div class="frame-title">
+            <h1>{{ 'Prestations'|trans }}</h1>
+        </div>
+        <div class="frame-body">
+            {% for prestation in prestations %}
+                <div class="frame">
+                    <div class="frame-title">
+                        <h1>{{prestation.nom}}</h1>
+                    </div>
+                    <div class="frame-body">
+                        <p>{{prestation.description}}</p>
+                        <p><strong>Prix:</strong> {{prestation.prix}} euros</p>
+                        <form action="/suppr_prestation" method="POST">
+                            <button type="submit" class="button" value={{prestation.id}} name="presta_Id">Supprimer prestation</button>
+                        </form>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
