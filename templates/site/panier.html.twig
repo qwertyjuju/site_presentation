@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ 'Panier'|trans }}{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="frame">
+        <div class="frame-title">
+            <h1>{{ 'Mon Panier'|trans }}</h1>
+        </div>
+        <div class="frame-body">
+            <form action="/suppr_commande" method="POST">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                        <th scope="col">Nom prestation</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Prix</th>
+                        <th scope="col">supprimer</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for prestation in prestations %}
+                        <tr class="table-dark">
+                            <td>{{prestation.nom}}</td>
+                            <td>{{prestation.description}}</td>
+                            <td>{{prestation.prix}}</td>
+                            <td><input type="checkbox" name="presta[]" id="staticPresta" value="{{prestation.id}}"></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <button type="submit" class="button">Supprimer commande(s)</button>
+            </form>
+            <h4>Total: {{total}}</h4>
+        </div>
+    </div>
+</div>
+{% endblock %}

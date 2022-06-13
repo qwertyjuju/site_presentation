@@ -11,14 +11,14 @@
             <form action="/ajout_commande" method="POST">
             {% for prestation in prestations %}
                 <div class="frame">
-                        <div class="frame-title">
-                            <input type="checkbox" name="presta[]" value="{{prestation.id}}">
-                            <h1>{{prestation.nom}}</h1>
-                        </div>
-                        <div class="frame-body">
-                            <p>{{prestation.description}}</p>
-                        </div>
-                    
+                    <div class="frame-title">
+                        <input type="checkbox" class="checkbox1" name="presta[]" id="staticPresta" value="{{prestation.id}}">
+                        <label for="staticPresta" ><h1>{{prestation.nom}}</h1></label>
+                    </div>
+                    <div class="frame-body">
+                        <p>{{prestation.description}}</p>
+                        <p><strong>Prix: </strong>{{prestation.prix}}</p>
+                    </div>
                 </div>
             {% endfor %}
             <button type="submit" class="button">Passer Commande</button>

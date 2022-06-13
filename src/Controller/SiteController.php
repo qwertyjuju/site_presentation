@@ -83,6 +83,13 @@ class SiteController extends AbstractController
         return $this->redirectToRoute("gestionprestations");
     }
     /**
+     * @Route("/panier")
+     */
+    public function panierNoLocale(): Response
+    {
+        return $this->redirectToRoute("panier");
+    }
+    /**
      * @Route("/ajout_prestation")
      */
     public function ajout_prestation(Request $request, EntityManagerInterface $manager): Response
@@ -100,6 +107,32 @@ class SiteController extends AbstractController
 		$manager->flush();
         return $this->redirectToRoute("gestionprestations");
     }
+    
+    /**
+     * @IsGranted("ROLE_ADMIN")
+     * @Route("/default_remplissagedb")
+     */
+    public function default_remplissagedb(EntityManagerInterface $manager): Response
+    {
+        $presta1 = new Prestation();
+        $presta1->setNom("Dev web");
+        $presta1->setDescription("Devellopement Web");
+        $presta1->setPrix(100.0);
+        $manager->persist($presta1);
+        $presta2 = new Prestation();
+        $presta2->setNom("Réalisation architecture réseau");
+        $presta2->setDescription("Concéption et réalisation de réseaux avec mise en place de systèmes de sécurité");
+        $presta2->setPrix(1000.0);
+        $manager->persist($presta2);
+        $presta3 = new Prestation();
+        $presta3->setNom("Intégration automatisme industrielle");
+        $presta3->setDescription("Concéption et réalisation de systèmes automatisés industriel.");
+        $presta3->setPrix(8000.0);
+        $manager->persist($presta3);
+        $manager->flush();
+        return $this->redirectToRoute("gestionprestations");
+    }
+
     /**
      * @Route("/suppr_prestation")
      */
@@ -113,15 +146,33 @@ class SiteController extends AbstractController
     }
 
     /**
+     * @Route("/suppr_commande")
+     */
+    public function suppr_commande(Request $request, EntityManagerInterface $manager, Security $security): Response
+    {
+        $prestations= $request->request->get("presta");
+        $user = $security->getUser();
+        foreach ($prestations as $id){
+            $prestation=$manager->getRepository(Prestation::class)->find($id);
+            $user->removeCommande($prestation);
+        }
+		$manager->flush();
+        return $this->redirectToRoute("panier");
+    }
+
+    /**
      * @Route("/ajout_commande")
      */
-    public function ajout_commande(Security $security): Response
+    public function ajout_commande(Request $request, EntityManagerInterface $manager, Security $security): Response
     {
+        $prestations = $request->request->get("presta");
         $user = $security->getUser();
-
-        return $this->redirectToRoute("panier", [
-            'user'=>$user->getUsername(),
-        ]);
+        foreach ($prestations as $id){
+            $prestation= $manager->getRepository(Prestation::class)->find($id);
+            $user->addCommande($prestation);
+        }
+        $manager->flush();
+        return $this->redirectToRoute("panier");
     }
 
     /**
@@ -211,6 +262,22 @@ class SiteController extends AbstractController
         $prestations=$manager->getRepository(Prestation::class)->findAll();
         return $this->render('site/prestations.html.twig', [
             'prestations'=>$prestations,
+        ]);
+    }
+    /**
+     *  @Route("/{_locale<%app.supported_locales%>}/panier", name="panier")
+     */
+    public function panier(EntityManagerInterface $manager, Security $security): Response
+    {
+        $user = $security->getUser();
+        $prestations = $user->getCommande();
+        $total = 0;
+        foreach($prestations as $prestation){
+            $total = $total+$prestation->getPrix();
+        }
+        return $this->render('site/panier.html.twig', [
+            'prestations'=>$prestations,
+            'total'=>$total,
         ]);
     }
 }
