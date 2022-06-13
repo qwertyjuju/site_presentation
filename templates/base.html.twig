@@ -31,6 +31,11 @@
 					<img class="img-50" src="{{ asset('img/computer-pixel-art-final.gif') }}">
 				</div>
 			</div>
+			{% if app.user %}
+			<div class="row">
+				<p>Bonjour, vous êtes connectés en tant que {{app.user.username}} </p>
+			</div>
+			{% endif %}
 		</header>
 		<nav class="navbar navbar-top navbar-expand-lg navbar-dark bg-primary">
 			<div class="container-fluid">
@@ -67,6 +72,30 @@
 							<div class="dropdown-menu">
 							  <a class="dropdown-item" href="{{ path(app.request.attributes.get('_route'), {_locale: 'fr'}) }}">fr</a>
 							  <a class="dropdown-item" href="{{ path(app.request.attributes.get('_route'), {_locale: 'en'}) }}">en</a>
+							</div>
+						</li>
+						{% if app.user %}
+							{% if "ROLE_ADMIN" in app.user.roles %}
+								<li class="nav-item dropdown">
+									<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+										Administration
+									</a>
+									<div class="dropdown-menu">
+									<a class="dropdown-item" href="/gestionprestations">{{ 'Gestion Prestations'|trans }}</a>
+									</div>
+								</li>
+							{% endif %}
+						{% endif %}
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+								Connexion/s'inscrire
+							</a>
+							<div class="dropdown-menu">
+							<a class="dropdown-item" href="/login">{{ 'Connexion'|trans }}</a>
+							<a class="dropdown-item" href="/register">{{ 'Inscription'|trans }}</a>
+							{% if app.user %}
+							<a class="dropdown-item" href="/logout">{{ 'Deconnexion'|trans }}</a>
+							{% endif %}
 							</div>
 						</li>
 					</ul>
