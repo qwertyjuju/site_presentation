@@ -2,15 +2,17 @@
 
 namespace App\Controller;
 
-use App\Entity\Profile;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
+use App\Entity\Profile;
+use App\Entity\Prestation; 
 
 class SiteController extends AbstractController
 {
@@ -62,6 +64,32 @@ class SiteController extends AbstractController
     public function downloadNoLocale(): Response
     {
         return $this->redirectToRoute("download");
+    }
+
+    /**
+     * @Route("/prestations")
+     */
+    public function prestationsNoLocale(): Response
+    {
+        return $this->redirectToRoute("prestations");
+    }
+    /**
+     * @Route("/ajout_prestation")
+     */
+    public function ajout_prestation(Request $request, EntityManagerInterface $manager): Response
+    {
+        $prestation = new Prestation();
+        $nom = $request->request->get("Nom");
+        $desc = $request->request->get("Description");
+        $image = $request->request->get("Image");
+        $prix = $request->request->get("Prix");
+        $prestation->setNom($nom);
+        $prestation->setDescription($desc);
+        $prestation->setImage($image);
+        $prestation->setPrix($prix);
+        $manager->persist($prestation);
+		$manager->flush();
+        return $this->redirectToRoute("prestations");
     }
 
     /**
@@ -130,5 +158,16 @@ class SiteController extends AbstractController
     public function projets(): Response
     {
         return $this->render('site/projets.html.twig');
+    }
+    /**
+     * @Route("/{_locale<%app.supported_locales%>}/prestations", name="prestations")
+     */
+    public function prestations (EntityManagerInterface $manager): Response
+    {
+        $prestations=$manager->getRepository(Prestation::class)->findAll();
+        #$prestations ="test";
+        return $this->render('site/prestations.html.twig', [
+            'prestations'=>$prestations,
+        ]);
     }
 }
