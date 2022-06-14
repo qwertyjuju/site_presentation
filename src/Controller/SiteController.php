@@ -323,4 +323,13 @@ class SiteController extends AbstractController
             'commandes'=>$commandes,
         ]);
     }
+
+    /**
+     * @Route("/{_locale<%app.supported_locales%>}/gestioncommandes, name="gestioncommandes"")
+     */
+    public function gestioncommandes(EntityManagerInterface $manager, Security $security): Response
+    {
+        
+    }
+     
 }
