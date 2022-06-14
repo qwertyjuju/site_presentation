@@ -31,7 +31,7 @@ class Panier
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="paniers")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $userid;
 

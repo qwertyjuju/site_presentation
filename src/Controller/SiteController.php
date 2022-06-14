@@ -156,7 +156,7 @@ class SiteController extends AbstractController
         $user = $security->getUser();
         $user->removePanier($panier);
 		$manager->flush();
-        return $this->redirectToRoute("gestionprestations");
+        return $this->redirectToRoute("panier");
     }
 
     /**
@@ -164,17 +164,17 @@ class SiteController extends AbstractController
      */
     public function suppr_commande(Request $request, EntityManagerInterface $manager): Response
     {
-        $panierid = $request->request->get("panierid");
-        dump($panierid);
-        $panier = $manager->getRepository(Panier::class)->find($panierid);
         $prestations= $request->request->get("presta");
-        dump($prestations);
-        foreach ($prestations as $id){
-            $prestation=$manager->getRepository(Prestation::class)->find($id);
-            $panier->setTotal($panier->getTotal()-$prestation->getPrix());
-            $panier->removeCommande($prestation);
+        if($prestations){
+            $panierid = $request->request->get("panierid");
+            $panier = $manager->getRepository(Panier::class)->find($panierid);
+            foreach ($prestations as $id){
+                $prestation=$manager->getRepository(Prestation::class)->find($id);
+                $panier->setTotal($panier->getTotal()-$prestation->getPrix());
+                $panier->removeCommande($prestation);
+            }
+            $manager->flush();
         }
-		$manager->flush();
         return $this->redirectToRoute("panier");
     }
 
@@ -195,6 +195,18 @@ class SiteController extends AbstractController
         }
         $panier->setTotal($total);
         $manager->persist($panier);
+        $manager->flush();
+        return $this->redirectToRoute("panier");
+    }
+
+    /**
+     * @Route("/valider_panier")
+     */
+    public function valider_panier(Request $request, EntityManagerInterface $manager, Security $security): Response
+    {
+        $panierid = $request->request->get("panier");
+        $panier = $manager->getRepository(Panier::class)->find($panierid);
+        $panier->setEtat("Attente");
         $manager->flush();
         return $this->redirectToRoute("panier");
     }
@@ -305,7 +317,6 @@ class SiteController extends AbstractController
                 array_push($commandes, $panier);
             }
         }
-        dump($paniers);
         dump($commandes);
         return $this->render('site/panier.html.twig', [
             'paniers'=>$paniers,
