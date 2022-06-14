@@ -5,33 +5,52 @@
 <div class="container">
     <div class="frame">
         <div class="frame-title">
-            <h1>{{ 'Mon Panier'|trans }}</h1>
+            <h1>{{ 'Mes paniers'|trans }}</h1>
         </div>
         <div class="frame-body">
-            <form action="/suppr_commande" method="POST">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                        <th scope="col">Nom prestation</th>
-                        <th scope="col">Description</th>
-                        <th scope="col">Prix</th>
-                        <th scope="col">supprimer</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for prestation in prestations %}
-                        <tr class="table-dark">
-                            <td>{{prestation.nom}}</td>
-                            <td>{{prestation.description}}</td>
-                            <td>{{prestation.prix}}</td>
-                            <td><input type="checkbox" name="presta[]" id="staticPresta" value="{{prestation.id}}"></td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-                <button type="submit" class="button">Supprimer commande(s)</button>
-            </form>
-            <h4>Total: {{total}}</h4>
+            {% for panier in paniers %}
+            <div class="frame">
+                <div class="frame-title">
+                    <label for="staticPanier"><h1>{{ 'Mon Panier'|trans }} {{panier.id}}</h1></label>
+                </div>
+                <div class="frame-body">
+                    <form action="/suppr_commande" method="POST">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                <th scope="col">Nom prestation</th>
+                                <th scope="col">Description</th>
+                                <th scope="col">Prix</th>
+                                <th scope="col">supprimer</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for prestation in panier.commandes %}
+                                <tr class="table-dark">
+                                    <td>{{prestation.nom}}</td>
+                                    <td>{{prestation.description}}</td>
+                                    <td>{{prestation.prix}}</td>
+                                    <td><input type="checkbox" name="presta[]" id="staticPresta" value="{{prestation.id}}"></td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                        <button type="submit" class="button" name="panierid" value="{{panier.id}}">Supprimer commande(s)</button>
+                    </form>
+                    <h4>Total: {{panier.total}} €</h4>
+                    <form action="/suppr_panier" method="POST">
+                        <button type="submit" class="button" name="panier" value={{panier.id}}>Supprimer panier</button>
+                    </form>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="frame">
+        <div class="frame-title">
+            <h1>{{ 'Mes commandes passées'|trans }}</h1>
+        </div>
+        <div class="frame-body">
         </div>
     </div>
 </div>

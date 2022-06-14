@@ -14,7 +14,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Profile;
-use App\Entity\Prestation; 
+use App\Entity\Prestation;
+use App\Entity\Panier;  
 
 class SiteController extends AbstractController
 {
@@ -144,33 +145,56 @@ class SiteController extends AbstractController
 		$manager->flush();
         return $this->redirectToRoute("gestionprestations");
     }
+    
+    /**
+     * @Route("/suppr_panier")
+     */
+    public function suppr_panier(Request $request, EntityManagerInterface $manager, Security $security): Response
+    {
+        $panierid = $request->request->get("panier");
+        $panier = $manager->getRepository(Panier::class)->find($panierid);
+        $user = $security->getUser();
+        $user->removePanier($panier);
+		$manager->flush();
+        return $this->redirectToRoute("gestionprestations");
+    }
 
     /**
      * @Route("/suppr_commande")
      */
-    public function suppr_commande(Request $request, EntityManagerInterface $manager, Security $security): Response
+    public function suppr_commande(Request $request, EntityManagerInterface $manager): Response
     {
+        $panierid = $request->request->get("panierid");
+        dump($panierid);
+        $panier = $manager->getRepository(Panier::class)->find($panierid);
         $prestations= $request->request->get("presta");
-        $user = $security->getUser();
+        dump($prestations);
         foreach ($prestations as $id){
             $prestation=$manager->getRepository(Prestation::class)->find($id);
-            $user->removeCommande($prestation);
+            $panier->setTotal($panier->getTotal()-$prestation->getPrix());
+            $panier->removeCommande($prestation);
         }
 		$manager->flush();
         return $this->redirectToRoute("panier");
     }
 
     /**
-     * @Route("/ajout_commande")
+     * @Route("/ajout_panier")
      */
-    public function ajout_commande(Request $request, EntityManagerInterface $manager, Security $security): Response
+    public function ajout_panier(Request $request, EntityManagerInterface $manager, Security $security): Response
     {
         $prestations = $request->request->get("presta");
+        $panier = new Panier();
         $user = $security->getUser();
+        $panier->setUserid($user);
+        $total = 0;
         foreach ($prestations as $id){
             $prestation= $manager->getRepository(Prestation::class)->find($id);
-            $user->addCommande($prestation);
+            $panier->addCommande($prestation);
+            $total = $total+$prestation->getPrix();
         }
+        $panier->setTotal($total);
+        $manager->persist($panier);
         $manager->flush();
         return $this->redirectToRoute("panier");
     }
@@ -270,14 +294,22 @@ class SiteController extends AbstractController
     public function panier(EntityManagerInterface $manager, Security $security): Response
     {
         $user = $security->getUser();
-        $prestations = $user->getCommande();
-        $total = 0;
-        foreach($prestations as $prestation){
-            $total = $total+$prestation->getPrix();
+        $temppaniers = $user->getPaniers();
+        $paniers = [];
+        $commandes = [];
+        foreach($temppaniers as $panier){
+            if (!$panier->getEtat()){
+                array_push($paniers, $panier);
+            }
+            if ($panier->getEtat()){
+                array_push($commandes, $panier);
+            }
         }
+        dump($paniers);
+        dump($commandes);
         return $this->render('site/panier.html.twig', [
-            'prestations'=>$prestations,
-            'total'=>$total,
+            'paniers'=>$paniers,
+            'commandes'=>$commandes,
         ]);
     }
 }

@@ -6,13 +6,11 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
- * @UniqueEntity(fields={"username"}, message="There is already an account with this username")
  */
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
@@ -40,13 +38,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $password;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Prestation::class, inversedBy="users")
+     * @ORM\OneToMany(targetEntity=Panier::class, mappedBy="userid")
      */
-    private $commande;
+    private $paniers;
 
     public function __construct()
     {
-        $this->commande = new ArrayCollection();
+        $this->paniers = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -134,25 +132,31 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @return Collection<int, Prestation>
+     * @return Collection<int, Panier>
      */
-    public function getCommande(): Collection
+    public function getPaniers(): Collection
     {
-        return $this->commande;
+        return $this->paniers;
     }
 
-    public function addCommande(Prestation $commande): self
+    public function addPanier(Panier $panier): self
     {
-        if (!$this->commande->contains($commande)) {
-            $this->commande[] = $commande;
+        if (!$this->paniers->contains($panier)) {
+            $this->paniers[] = $panier;
+            $panier->setUserid($this);
         }
 
         return $this;
     }
 
-    public function removeCommande(Prestation $commande): self
+    public function removePanier(Panier $panier): self
     {
-        $this->commande->removeElement($commande);
+        if ($this->paniers->removeElement($panier)) {
+            // set the owning side to null (unless already changed)
+            if ($panier->getUserid() === $this) {
+                $panier->setUserid(null);
+            }
+        }
 
         return $this;
     }
