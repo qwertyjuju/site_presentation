@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ 'Gestion commandes'|trans }}{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="frame">
+        <div class="frame-title">
+            <h1>{{ 'Gestion commandes'|trans }}</h1>
+        </div>
+        <div class="frame-body">
+            <form action="/admin_panier" method="POST">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">id commande</th>
+                            <th scope="col">utilisateur</th>
+                            <th scope="col">Préstation(s)</th>
+                            <th scope="col">total</th>
+                            <th scope="col">statut</th>
+                            <th scope="col">changer statut</th>
+                            <th scope="col">supprimer</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for panier in paniers %}
+                        <tr class="table-dark">
+                            <td>{{panier.id}}</td>
+                            <td>
+                            {% if panier.userid %}
+                                {{panier.userid.username}}
+                            {% else %}
+                                {{panier.userid}}
+                            {% endif %}
+                            </td>
+                            <td>
+                                <ul>
+                                    {% for prestation in panier.commandes %}
+                                        <li>{{prestation.nom}}</li>
+                                    {% endfor %}
+                                </ul>
+                            </td>
+                            <td>{{panier.total}}</td>
+                            <td>{{panier.etat}}</td>
+                            <td>
+                                <select name="etats[{{panier.id}}]">
+                                    <option value=""></option>
+                                    <option value="ATTENTE">ATTENTE</option>
+                                    <option value="ACCEPTEE">ACCEPTEE</option>
+                                    <option value="TERMINEE">TERMINEE</option>
+                                </select>
+                            </td>
+                            <td>
+                                <input type="checkbox" value="{{panier.id}}" name="paniersuppr[]">
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <button type="submit" class="button">Valider modifications</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

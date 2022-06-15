@@ -40,13 +40,13 @@ class Prestation
     private $prix;
 
     /**
-     * @ORM\ManyToMany(targetEntity=User::class, mappedBy="commande")
+     * @ORM\ManyToMany(targetEntity=Panier::class, mappedBy="commandes")
      */
-    private $users;
+    private $paniers;
 
     public function __construct()
     {
-        $this->users = new ArrayCollection();
+        $this->paniers = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -103,27 +103,27 @@ class Prestation
     }
 
     /**
-     * @return Collection<int, User>
+     * @return Collection<int, Panier>
      */
-    public function getUsers(): Collection
+    public function getPaniers(): Collection
     {
-        return $this->users;
+        return $this->paniers;
     }
 
-    public function addUser(User $user): self
+    public function addPanier(Panier $panier): self
     {
-        if (!$this->users->contains($user)) {
-            $this->users[] = $user;
-            $user->addCommande($this);
+        if (!$this->paniers->contains($panier)) {
+            $this->paniers[] = $panier;
+            $panier->addCommande($this);
         }
 
         return $this;
     }
 
-    public function removeUser(User $user): self
+    public function removePanier(Panier $panier): self
     {
-        if ($this->users->removeElement($user)) {
-            $user->removeCommande($this);
+        if ($this->paniers->removeElement($panier)) {
+            $panier->removeCommande($this);
         }
 
         return $this;

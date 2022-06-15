@@ -8,7 +8,7 @@
         <h1>Prestations</h1>
         </div>
         <div class="frame-body">
-            <form action="/ajout_commande" method="POST">
+            <form action="/ajout_panier" method="POST">
             {% for prestation in prestations %}
                 <div class="frame">
                     <div class="frame-title">
@@ -16,8 +16,21 @@
                         <label for="staticPresta" ><h1>{{prestation.nom}}</h1></label>
                     </div>
                     <div class="frame-body">
-                        <p>{{prestation.description}}</p>
-                        <p><strong>Prix: </strong>{{prestation.prix}}</p>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-8">
+                                    <p>{{prestation.description}}</p>
+                                </div>
+                                <div class="col-4">
+                                    {% if prestation.image %}
+                                        <image src="img_presta/{{prestation.image}}" width="100%">
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <p><strong>Prix: </strong>{{prestation.prix}}</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             {% endfor %}

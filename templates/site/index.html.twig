@@ -14,7 +14,13 @@
 						<div class="console">
 							<img class="console-bg" src="{{ asset('img/console.png') }}">
 							<div class="console-content">
-								<p class="console-line">{{ 'Bonjour et bienvenue sur mon site'|trans }}</p>
+								<p class="console-line">
+								{% if app.user %}
+									{{ 'Bonjour, '|trans }}{{app.user.username}}{{' et bienvenue sur mon site'|trans }}
+								{% else %}
+									{{ 'Bonjour et bienvenue sur mon site'|trans }}
+								{% endif %}
+								</p>
 								<p class="console-line">{{ 'Je m\'appelle Julien ANDREOLI, j\'ai 26 ans. Je suis diplomé d\'une licence pro en automatisme industriel, et je suis actuellement en reconversion dans les réseaux et télécommunications'|trans }}</p>
 								<p class="console-line">{{ 'Vous trouverez sur ce site mon CV ainsi que mon portfolio.'|trans }}</p>
 							</div>

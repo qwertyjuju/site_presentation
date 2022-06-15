@@ -4,6 +4,17 @@
 {% block body %}
 <div class="container">
     <div class="frame">
+        <div class="frame-title">
+            <h1>Gestion image prestation</h1>
+        </div>
+        <div class="frame-body">
+            <form action="/ajout_image" method="POST">
+                <input type="file" class="string" id="staticFile" name="image" required><br>
+                 <button type="submit" class="button">Televerser image</button>
+            </form>
+        </div>
+    </div>
+    <div class="frame">
         <div class="frame-title">				
             <h1>{{ 'Ajout Prestation'|trans }}</h1>
 		</div>
@@ -19,7 +30,12 @@
                 </div>
                 <div>
                     <label for="staticImage" >Image</label><br>
-                    <input type="text" class="string" id="staticImage" name="Image"><br>
+                    <select id="staticImage" name="Image">
+                        <option value="">--selectionner image--</option>
+                        {% for image in images %}
+                            <option value={{image}}>{{image}}</option>
+                        {% endfor %}
+                    </select><br>
                 </div>
                 <div>
                     <label for="staticPrix">Prix</label><br>

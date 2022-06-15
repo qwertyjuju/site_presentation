@@ -57,7 +57,7 @@
 							<a class="nav-link" href="/cv">{{ 'CV'|trans }}</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link hidden" href="/blog">{{ 'Blog'|trans }}</a>
+							<a class="nav-link hidden" href="http://wordpress">{{ 'Blog'|trans }}</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link hidden" href="/projets">{{ 'Projets'|trans }}</a>
@@ -67,18 +67,9 @@
 							<a class="nav-link hidden" href="/prestations">{{ 'Prestations'|trans }}</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link hidden" href="/panier">{{ 'Mon panier'|trans }}</a>
+							<a class="nav-link hidden" href="/panier">{{ 'Mes commandes'|trans }}</a>
 						</li>
 						{% endif %}
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-								{{ app.request.locale|locale_name(app.request.locale) }}
-							</a>
-							<div class="dropdown-menu">
-							  <a class="dropdown-item" href="{{ path(app.request.attributes.get('_route'), {_locale: 'fr'}) }}">fr</a>
-							  <a class="dropdown-item" href="{{ path(app.request.attributes.get('_route'), {_locale: 'en'}) }}">en</a>
-							</div>
-						</li>
 						{% if app.user %}
 							{% if "ROLE_ADMIN" in app.user.roles %}
 								<li class="nav-item dropdown">
@@ -87,7 +78,8 @@
 									</a>
 									<div class="dropdown-menu">
 									<a class="dropdown-item" href="/gestionprestations">{{ 'Gestion Prestations'|trans }}</a>
-									<a class="dropdown-item" href="/default_remplissagedb">{{ 'Replissage DB'|trans }}</a>
+									<a class="dropdown-item" href="/gestioncommandes">{{ 'Gestion Commandes'|trans }}</a>
+									<a class="dropdown-item" href="/default_remplissagedb">{{ 'Remplissage DB'|trans }}</a>
 									</div>
 								</li>
 							{% endif %}
@@ -102,6 +94,15 @@
 							{% if app.user %}
 							<a class="dropdown-item" href="/logout">{{ 'Deconnexion'|trans }}</a>
 							{% endif %}
+							</div>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+								{{ app.request.locale|locale_name(app.request.locale) }}
+							</a>
+							<div class="dropdown-menu">
+							  <a class="dropdown-item" href="{{ path(app.request.attributes.get('_route'), {_locale: 'fr'}) }}">fr</a>
+							  <a class="dropdown-item" href="{{ path(app.request.attributes.get('_route'), {_locale: 'en'}) }}">en</a>
 							</div>
 						</li>
 					</ul>
