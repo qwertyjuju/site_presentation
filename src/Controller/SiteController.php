@@ -10,12 +10,14 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Profile;
 use App\Entity\Prestation;
-use App\Entity\Panier;  
+use App\Entity\Panier;
+
 
 class SiteController extends AbstractController
 {
@@ -84,131 +86,30 @@ class SiteController extends AbstractController
         return $this->redirectToRoute("gestionprestations");
     }
     /**
+     * @Route("/gestioncommandes")
+     */
+    public function gestioncommandesNoLocale(): Response
+    {
+        return $this->redirectToRoute("gestioncommandes");
+    }
+    /**
      * @Route("/panier")
      */
     public function panierNoLocale(): Response
     {
         return $this->redirectToRoute("panier");
     }
-    /**
-     * @Route("/ajout_prestation")
-     */
-    public function ajout_prestation(Request $request, EntityManagerInterface $manager): Response
-    {
-        $prestation = new Prestation();
-        $nom = $request->request->get("Nom");
-        $desc = $request->request->get("Description");
-        $image = $request->request->get("Image");
-        $prix = $request->request->get("Prix");
-        $prestation->setNom($nom);
-        $prestation->setDescription($desc);
-        $prestation->setImage($image);
-        $prestation->setPrix($prix);
-        $manager->persist($prestation);
-		$manager->flush();
-        return $this->redirectToRoute("gestionprestations");
-    }
-    
-    /**
-     * @IsGranted("ROLE_ADMIN")
-     * @Route("/default_remplissagedb")
-     */
-    public function default_remplissagedb(EntityManagerInterface $manager): Response
-    {
-        $presta1 = new Prestation();
-        $presta1->setNom("Dev web");
-        $presta1->setDescription("Devellopement Web");
-        $presta1->setPrix(100.0);
-        $manager->persist($presta1);
-        $presta2 = new Prestation();
-        $presta2->setNom("Réalisation architecture réseau");
-        $presta2->setDescription("Concéption et réalisation de réseaux avec mise en place de systèmes de sécurité");
-        $presta2->setPrix(1000.0);
-        $manager->persist($presta2);
-        $presta3 = new Prestation();
-        $presta3->setNom("Intégration automatisme industrielle");
-        $presta3->setDescription("Concéption et réalisation de systèmes automatisés industriel.");
-        $presta3->setPrix(8000.0);
-        $manager->persist($presta3);
-        $manager->flush();
-        return $this->redirectToRoute("gestionprestations");
-    }
 
     /**
-     * @Route("/suppr_prestation")
+     * @Route("/ajout_image")
      */
-    public function suppr_prestation(Request $request, EntityManagerInterface $manager): Response
+    public function ajout_image(Request $request, UploadedFile $file): Response
     {
-        $id = $request->request->get("presta_Id");
-        $prestation=$manager->getRepository(Prestation::class)->find($id);
-        $manager->remove($prestation);
-		$manager->flush();
-        return $this->redirectToRoute("gestionprestations");
-    }
-    
-    /**
-     * @Route("/suppr_panier")
-     */
-    public function suppr_panier(Request $request, EntityManagerInterface $manager, Security $security): Response
-    {
-        $panierid = $request->request->get("panier");
-        $panier = $manager->getRepository(Panier::class)->find($panierid);
-        $user = $security->getUser();
-        $user->removePanier($panier);
-		$manager->flush();
-        return $this->redirectToRoute("panier");
-    }
-
-    /**
-     * @Route("/suppr_commande")
-     */
-    public function suppr_commande(Request $request, EntityManagerInterface $manager): Response
-    {
-        $prestations= $request->request->get("presta");
-        if($prestations){
-            $panierid = $request->request->get("panierid");
-            $panier = $manager->getRepository(Panier::class)->find($panierid);
-            foreach ($prestations as $id){
-                $prestation=$manager->getRepository(Prestation::class)->find($id);
-                $panier->setTotal($panier->getTotal()-$prestation->getPrix());
-                $panier->removeCommande($prestation);
-            }
-            $manager->flush();
+        $image = $request->request->get('image');
+        if($image){
+            $imageloc = "./img_presta/$image";
         }
-        return $this->redirectToRoute("panier");
-    }
-
-    /**
-     * @Route("/ajout_panier")
-     */
-    public function ajout_panier(Request $request, EntityManagerInterface $manager, Security $security): Response
-    {
-        $prestations = $request->request->get("presta");
-        $panier = new Panier();
-        $user = $security->getUser();
-        $panier->setUserid($user);
-        $total = 0;
-        foreach ($prestations as $id){
-            $prestation= $manager->getRepository(Prestation::class)->find($id);
-            $panier->addCommande($prestation);
-            $total = $total+$prestation->getPrix();
-        }
-        $panier->setTotal($total);
-        $manager->persist($panier);
-        $manager->flush();
-        return $this->redirectToRoute("panier");
-    }
-
-    /**
-     * @Route("/valider_panier")
-     */
-    public function valider_panier(Request $request, EntityManagerInterface $manager, Security $security): Response
-    {
-        $panierid = $request->request->get("panier");
-        $panier = $manager->getRepository(Panier::class)->find($panierid);
-        $panier->setEtat("Attente");
-        $manager->flush();
-        return $this->redirectToRoute("panier");
+        return $this->redirectToRoute("gestionprestations",['image'=>$this->getRequest()]);
     }
 
     /**
@@ -285,8 +186,12 @@ class SiteController extends AbstractController
     public function gestionprestations (EntityManagerInterface $manager): Response
     {
         $prestations=$manager->getRepository(Prestation::class)->findAll();
+        $images = scandir("./img_presta");
+        unset($images[array_search(".",$images)]);
+        unset($images[array_search("..",$images)]);
         return $this->render('site/gestionprestations.html.twig', [
             'prestations'=>$prestations,
+            'images'=>$images,
         ]);
     }
 
@@ -317,19 +222,22 @@ class SiteController extends AbstractController
                 array_push($commandes, $panier);
             }
         }
-        dump($commandes);
         return $this->render('site/panier.html.twig', [
             'paniers'=>$paniers,
             'commandes'=>$commandes,
         ]);
     }
-
     /**
-     * @Route("/{_locale<%app.supported_locales%>}/gestioncommandes, name="gestioncommandes"")
+     * @IsGranted("ROLE_ADMIN")
+     * @Route("/{_locale<%app.supported_locales%>}/gestioncommandes", name="gestioncommandes")
      */
     public function gestioncommandes(EntityManagerInterface $manager, Security $security): Response
     {
-        
+        $user = $security->getUser();
+        $paniers = $manager->getRepository(Panier::class)->findAll();
+        dump($paniers);
+        return $this->render('site/gestioncommandes.html.twig', [
+            'paniers'=>$paniers,
+        ]);
     }
-     
 }
