@@ -23,7 +23,7 @@
                                 </div>
                                 <div class="col-4">
                                     {% if prestation.image %}
-                                        <image src="img_presta/{{prestation.image}}" width="100%">
+                                        <image src="{{ asset('img_presta/{{prestation.image}}') }}" width="100%">
                                     {% endif %}
                                 </div>
                             </div>
