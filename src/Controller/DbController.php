@@ -55,7 +55,7 @@ class DbController extends AbstractController
         $presta3 = new Prestation();
         $presta3->setNom("Intégration automatisme industrielle");
         $presta3->setDescription("Concéption et réalisation de systèmes automatisés industriel.");
-        $presta1->setImage("industriel.jpg");
+        $presta3->setImage("industriel.jpg");
         $presta3->setPrix(14000.0);
         $manager->persist($presta3);
         $manager->flush();
