@@ -186,7 +186,7 @@ class SiteController extends AbstractController
     public function gestionprestations (EntityManagerInterface $manager): Response
     {
         $prestations=$manager->getRepository(Prestation::class)->findAll();
-        $images = scandir("./public/img_presta");
+        $images = scandir("./img_presta");
         unset($images[array_search(".",$images)]);
         unset($images[array_search("..",$images)]);
         return $this->render('site/gestionprestations.html.twig', [
