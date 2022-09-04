@@ -17,6 +17,7 @@ use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Profile;
 use App\Entity\Prestation;
 use App\Entity\Panier;
+use App\Entity\Document;
 
 
 class SiteController extends AbstractController
@@ -93,6 +94,13 @@ class SiteController extends AbstractController
         return $this->redirectToRoute("gestioncommandes");
     }
     /**
+     * @Route("/gestionDocuments")
+     */
+    public function gestionDocumentsNoLocale(): Response
+    {
+        return $this->redirectToRoute("gestionDocuments");
+    }
+    /**
      * @Route("/panier")
      */
     public function panierNoLocale(): Response
@@ -101,15 +109,35 @@ class SiteController extends AbstractController
     }
 
     /**
+     * @Route("/documents")
+     */
+    public function documentsNoLocale(): Response
+    {
+        return $this->redirectToRoute("documents");
+    }
+        
+    /**
+     * @Route("/document")
+     */
+    public function documentNoLocale(Request $request): Response
+    {
+        $documentid= $request->query->get('docid');
+        return $this->redirectToRoute("document", ['docid'=>$documentid]);
+    }
+
+    /**
      * @Route("/ajout_image")
      */
-    public function ajout_image(Request $request, UploadedFile $file): Response
+    public function ajout_image(Request $request): Response
     {
-        $image = $request->request->get('image');
+        $image = $request->files->get('image');
+        $imagename = $image->getClientOriginalName();
         if($image){
-            $imageloc = "./img_presta/$image";
+            dump($image);
+            $imageloc = "./img_presta/$imagename";
+            dump(move_uploaded_file($image->getPathname(), $imageloc));
         }
-        return $this->redirectToRoute("gestionprestations",['image'=>$this->getRequest()]);
+        return $this->redirectToRoute("gestionprestations");
     }
 
     /**
@@ -179,6 +207,15 @@ class SiteController extends AbstractController
     {
         return $this->render('site/projets.html.twig');
     }
+
+        /**
+     * @Route("/{_locale<%app.supported_locales%>}/gestionDocuments", name="gestionDocuments")
+     */
+    public function gestionDocuments(): Response
+    {
+        return $this->render('site/gestionDocuments.html.twig');
+    }
+
     /**
      * @IsGranted("ROLE_ADMIN")
      * @Route("/{_locale<%app.supported_locales%>}/gestionprestations", name="gestionprestations")
@@ -227,6 +264,33 @@ class SiteController extends AbstractController
             'commandes'=>$commandes,
         ]);
     }
+
+    /**
+     * @IsGranted("ROLE_USER")
+     * @Route("/{_locale<%app.supported_locales%>}/documents", name="documents")
+     */
+    public function documents(EntityManagerInterface $manager): Response
+    {
+        $documents = $manager->getRepository(Document::class)->findAll();
+        return $this->render('site/documents.html.twig', [
+            'documents'=>$documents,
+        ]);
+    }
+    
+    /**
+     * @IsGranted("ROLE_USER")
+     * @Route("/{_locale<%app.supported_locales%>}/document", name="document")
+     */
+    public function document(Request $request, EntityManagerInterface $manager): Response
+    {
+        $documentid= $request->query->get('docid');
+        dump($documentid);
+        $document = $manager->getRepository(Document::class)->find($documentid);
+        return $this->render('site/document.html.twig', [
+            'document'=>$document,
+        ]);
+    }
+    
     /**
      * @IsGranted("ROLE_ADMIN")
      * @Route("/{_locale<%app.supported_locales%>}/gestioncommandes", name="gestioncommandes")

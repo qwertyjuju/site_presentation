@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ 'Gestion Documents'|trans }}{% endblock %}
+{% block body %}
+<div class="container">
+    <div class="frame">
+        <div class="frame-title">
+            <h1>{{ 'Documents'|trans }}</h1>
+        </div>
+        <div class="frame-body">
+        <ul>
+            {% for document in documents %}
+            <li><a href={{ '/document?docid='~document.id }}>{{ document.title }}</a></li>
+            {% endfor %}
+        </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

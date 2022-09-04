@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ 'Gestion Documents'|trans }}{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="frame">
+        <div class="frame-title">
+            <h1>{{ 'Ajout Document'|trans }}</h1>
+        </div>
+        <div class="frame-body">
+            <form action="/ajout_document" method="POST">
+                <label for="staticTitre">Titre</label><br>
+                <input type="text" class="string" id="staticTitre" name="Titre" required><br>
+                <label for="staticHtml">Html</label><br>
+                <textarea id="staticHtml" class="full-width" name="Html"></textarea>
+                <button type="submit" class="button">Ajouter</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

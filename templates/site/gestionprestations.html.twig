@@ -8,9 +8,9 @@
             <h1>Gestion image prestation</h1>
         </div>
         <div class="frame-body">
-            <form action="/ajout_image" method="POST">
-                <input type="file" class="string" id="staticFile" name="image" required><br>
-                 <button type="submit" class="button">Televerser image</button>
+            <form action="/ajout_image" method="POST" enctype="multipart/form-data">
+                <input type="file" id="staticFile" name="image" required><br>
+                <button type="submit" class="button">Televerser image</button>
             </form>
         </div>
     </div>
