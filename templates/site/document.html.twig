@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ 'Gestion Documents'|trans }}{% endblock %}
+{% block stylesheets %}
+		<link rel="stylesheet" href="{{ asset('css/vscode.css') }}">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+{% endblock %}
+{% block body %}
+<div class="container">
+    <div class="frame">
+        <div class="frame-title">
+            <h1>{{ document.title }}</h1>
+        </div>
+        <div class="frame-body">
+        {% autoescape %}
+            {{ document.html|raw }}
+        {% endautoescape %}
+        </div>
+    </div>
+</div>
+{% endblock %}

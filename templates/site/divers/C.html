@@ -1,0 +1,936 @@
+<ul>
+<li><a href="#langage-c">langage C</a>
+<ul>
+<li><a href="#types">types</a></li>
+<li><a href="#exemple-programme-c">exemple programme c</a></li>
+<li><a href="#declaration-de-variables">Declaration de variables</a></li>
+<li><a href="#afficher-le-contenu-dune-variable">Afficher le contenu d'une variable</a></li>
+<li><a href="#r%C3%A9cup%C3%A9rez-une-saisie">Récupérez une saisie</a></li>
+<li><a href="#calculs">Calculs</a>
+<ul>
+<li><a href="#les-raccourcis">Les raccourcis</a></li>
+</ul>
+</li>
+<li><a href="#les-conditions">Les conditions</a>
+<ul>
+<li><a href="#comparaison">Comparaison</a></li>
+<li><a href="#et-ou-">ET, OU, ...</a></li>
+</ul>
+</li>
+<li><a href="#expression-ternaire">expression ternaire</a></li>
+<li><a href="#les-boucles">Les Boucles</a></li>
+<li><a href="#prototype">prototype</a></li>
+<li><a href="#structure-dun-projet">structure d'un projet</a>
+<ul>
+<li><a href="#exemple">exemple</a></li>
+</ul>
+</li>
+<li><a href="#la-compilation">La compilation</a></li>
+<li><a href="#port%C3%A9e-des-variables-et-fonctions">Portée des variables et fonctions</a></li>
+<li><a href="#les-pointeurs">Les pointeurs</a></li>
+<li><a href="#les-tableaux">Les tableaux</a></li>
+<li><a href="#les-cha%C3%AEnes-de-caract%C3%A8res">Les chaînes de caractères</a></li>
+<li><a href="#directive-de-pr%C3%A9processeur">Directive de préprocesseur</a>
+<ul>
+<li><a href="#include">include</a></li>
+<li><a href="#define">define</a></li>
+<li><a href="#les-constantes-pr%C3%A9definies-par-le-processeur">les constantes prédefinies par le processeur</a></li>
+<li><a href="#les-macros">Les macros</a></li>
+<li><a href="#les-conditions-1">Les conditions</a></li>
+<li><a href="#ifdef-et-ifndef">ifdef et ifndef</a></li>
+</ul>
+</li>
+<li><a href="#structures-et-enumerations">structures et enumerations</a>
+<ul>
+<li><a href="#structures">Structures</a></li>
+<li><a href="#enumeration">enumeration</a></li>
+</ul>
+</li>
+<li><a href="#les-fichiers">Les fichiers</a>
+<ul>
+<li><a href="#renommer-et-supprimer-un-fichier">renommer et supprimer un fichier</a></li>
+</ul>
+</li>
+<li><a href="#allocation-dynamique">Allocation dynamique</a>
+<ul>
+<li><a href="#sizeof">sizeof</a></li>
+<li><a href="#allocation-manuelle-de-la-m%C3%A9moire-malloc-et-free">Allocation manuelle de la mémoire (malloc et free)</a></li>
+</ul>
+</li>
+<li><a href="#mots-cl%C3%A9s">Mots-clés</a></li>
+<li><a href="#regles-decritures">Regles d'ecritures:</a></li>
+<li><a href="#notes-importantes">Notes importantes</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="types">types</h2>
+<table>
+<thead>
+<tr>
+<th>Nom du type</th>
+<th>Minimum</th>
+<th>Maximum</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>signed char</td>
+<td>-127</td>
+<td>127</td>
+</tr>
+<tr>
+<td>int</td>
+<td>-32 767</td>
+<td>32 767</td>
+</tr>
+<tr>
+<td>long</td>
+<td>-2 147 483 647</td>
+<td>2 147 483 647</td>
+</tr>
+<tr>
+<td>float</td>
+<td>-1 x10<sup>37</sup></td>
+<td>1 x10<sup>37</sup></td>
+</tr>
+<tr>
+<td>double</td>
+<td>-1 x10<sup>37</sup></td>
+<td>1 x10<sup>37</sup></td>
+</tr>
+</tbody>
+</table>
+<p>Pour les types entiers (signed char, int, long,...) il existe d'autres types dits &quot;unsigned&quot;:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>unsigned char</td>
+<td>0 à 255</td>
+</tr>
+<tr>
+<td>unsigned int</td>
+<td>0 à 65 535</td>
+</tr>
+<tr>
+<td>unsigned long</td>
+<td>0 à 4 294 967 295</td>
+</tr>
+</tbody>
+</table>
+<p>difference entre float et double:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>float</td>
+<td>précision de 6 décimales</td>
+</tr>
+<tr>
+<td>double</td>
+<td>précision de 15 décimales</td>
+</tr>
+</tbody>
+</table>
+<p>Il existe aussi le type spéciale size_t signifiant qu'une fonction renvoie un nombre correpondant à une taille</p>
+<h2 id="exemple-programme-c">exemple programme c</h2>
+<pre><code class="language-C"><div><span class="hljs-comment">/*
+Ci-dessous, ce sont des directives de préprocesseur.
+Ces lignes permettent d&#x27;ajouter des fichiers au projet,
+fichiers que l&#x27;on appelle bibliothèques.
+Grâce à ces bibliothèques, on disposera de fonctions toutes prêtes pour afficher
+par exemple un message à l&#x27;écran.
+*/</span>
+
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdlib.h&gt;</span></span>
+
+<span class="hljs-comment">/*
+Ci-dessous, vous avez la fonction principale du programme, appelée main.
+C&#x27;est par cette fonction que tous les programmes commencent.
+Ici, ma fonction se contente d&#x27;afficher Bonjour à l&#x27;écran.
+*/</span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span>
+</span>{
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Bonjour!\n&quot;</span>); <span class="hljs-comment">// instruction pour afficher &#x27;Bonjour!&#x27; à l&#x27;ecran</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>; <span class="hljs-comment">// renvoie le nombre 0 puis s&#x27;arrete</span>
+}
+</div></code></pre>
+<h2 id="declaration-de-variables">Declaration de variables</h2>
+<pre><code class="language-C"><div><span class="hljs-keyword">int</span> nb; <span class="hljs-comment">// creer une variable nb de type int</span>
+<span class="hljs-keyword">double</span> note; <span class="hljs-comment">//creer une variable note de type double</span>
+</div></code></pre>
+<p>pour creer une constante, il faut utiliser le mot &quot;const&quot;:</p>
+<pre><code class="language-C"><div><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> nb; <span class="hljs-comment">// creer une constante nb de type int</span>
+</div></code></pre>
+<h2 id="afficher-le-contenu-dune-variable">Afficher le contenu d'une variable</h2>
+<pre><code class="language-C"><div><span class="hljs-keyword">int</span> nb, niveau;
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Il vous reste %d vies, niveau %d&quot;</span>, nb, niveau);
+</div></code></pre>
+<table>
+<thead>
+<tr>
+<th>Format</th>
+<th>Type attendu</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>%c</td>
+<td>char</td>
+</tr>
+<tr>
+<td>%s</td>
+<td>string(chaine de caractère)</td>
+</tr>
+<tr>
+<td>%d</td>
+<td>int</td>
+</tr>
+<tr>
+<td>%u</td>
+<td>unsigned int</td>
+</tr>
+<tr>
+<td>%ld</td>
+<td>long</td>
+</tr>
+<tr>
+<td>%f</td>
+<td>float</td>
+</tr>
+<tr>
+<td>%f</td>
+<td>double</td>
+</tr>
+</tbody>
+</table>
+<h2 id="récupérez-une-saisie">Récupérez une saisie</h2>
+<pre><code class="language-C"><div><span class="hljs-keyword">int</span> age = <span class="hljs-number">0</span>;
+<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;age);
+</div></code></pre>
+<h2 id="calculs">Calculs</h2>
+<table>
+<thead>
+<tr>
+<th>Opération</th>
+<th>Signe</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Addition</td>
+<td>+</td>
+</tr>
+<tr>
+<td>Soustraction</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Multiplication</td>
+<td>*</td>
+</tr>
+<tr>
+<td>Division</td>
+<td>/</td>
+</tr>
+<tr>
+<td>Modulo</td>
+<td>%</td>
+</tr>
+</tbody>
+</table>
+<p>pour élever une variable a à une puissance b:</p>
+<pre><code class="language-C"><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;math.h&gt;</span></span>
+<span class="hljs-keyword">int</span> a=<span class="hljs-number">5</span>, b=<span class="hljs-number">2</span>;
+<span class="hljs-built_in">pow</span>(a,b);
+</div></code></pre>
+<h3 id="les-raccourcis">Les raccourcis</h3>
+<pre><code class="language-C"><div><span class="hljs-keyword">int</span> nb;
+nb++; <span class="hljs-comment">// incrémentation</span>
+nb--; <span class="hljs-comment">// décrémentation</span>
+nb*=<span class="hljs-number">2</span>; <span class="hljs-comment">// multiplication par 2</span>
+nb+=<span class="hljs-number">4</span>; <span class="hljs-comment">// nb = nb+4</span>
+nb-=<span class="hljs-number">4</span>; <span class="hljs-comment">// nb = nb-4</span>
+nb/=<span class="hljs-number">4</span>; <span class="hljs-comment">// nb = nb/4</span>
+nb%=<span class="hljs-number">4</span> <span class="hljs-comment">// nb = nb%4</span>
+</div></code></pre>
+<h2 id="les-conditions">Les conditions</h2>
+<p>condition if..else:</p>
+<pre><code class="language-C"><div><span class="hljs-keyword">if</span> (<span class="hljs-comment">/* condition */</span>)
+{
+    <span class="hljs-comment">// Instructions à exécuter si la condition est vraie</span>
+}
+<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(<span class="hljs-comment">/* condition */</span>)
+{
+    <span class="hljs-comment">// Instructions à exécuter si la condition est vraie</span>
+}
+<span class="hljs-keyword">else</span>{
+    <span class="hljs-comment">// Instructions à exécuter si les deux conditions précédentes ne sont pas vraies</span>
+}
+</div></code></pre>
+<p>condition switch:</p>
+<pre><code class="language-C"><div><span class="hljs-keyword">int</span> age;
+<span class="hljs-keyword">switch</span> (age)
+{
+<span class="hljs-keyword">case</span> <span class="hljs-number">2</span>:
+  <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Salut bebe !&quot;</span>);
+  <span class="hljs-keyword">break</span>;
+<span class="hljs-keyword">case</span> <span class="hljs-number">6</span>:
+  <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Salut gamin !&quot;</span>);
+  <span class="hljs-keyword">break</span>;
+<span class="hljs-keyword">case</span> <span class="hljs-number">12</span>:
+  <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Salut jeune !&quot;</span>);
+  <span class="hljs-keyword">break</span>;
+<span class="hljs-keyword">case</span> <span class="hljs-number">16</span>:
+  <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Salut ado !&quot;</span>);
+  <span class="hljs-keyword">break</span>;
+<span class="hljs-keyword">case</span> <span class="hljs-number">18</span>:
+  <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Salut adulte !&quot;</span>);
+  <span class="hljs-keyword">break</span>;
+<span class="hljs-keyword">case</span> <span class="hljs-number">68</span>:
+  <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Salut papy !&quot;</span>);
+  <span class="hljs-keyword">break</span>;
+<span class="hljs-keyword">default</span>:
+  <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Je n&#x27;ai aucune reponse pour ton age&quot;</span>);
+  <span class="hljs-keyword">break</span>;
+}
+</div></code></pre>
+<h3 id="comparaison">Comparaison</h3>
+<table>
+<thead>
+<tr>
+<th>Symbole</th>
+<th>Signification</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>==</td>
+<td>est égal à</td>
+</tr>
+<tr>
+<td>&gt;</td>
+<td>est supérieur à</td>
+</tr>
+<tr>
+<td>&lt;</td>
+<td>est inférieur à</td>
+</tr>
+<tr>
+<td>&gt;=</td>
+<td>est supérieur ou égal à</td>
+</tr>
+<tr>
+<td>&lt;=</td>
+<td>est inférieur ou égal à</td>
+</tr>
+<tr>
+<td>!=</td>
+<td>est différent de</td>
+</tr>
+</tbody>
+</table>
+<h3 id="et-ou-">ET, OU, ...</h3>
+<table>
+<thead>
+<tr>
+<th>Symbole</th>
+<th>Signification</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&amp;&amp;</td>
+<td>ET</td>
+</tr>
+<tr>
+<td>||</td>
+<td>OU</td>
+</tr>
+<tr>
+<td>!</td>
+<td>NON</td>
+</tr>
+</tbody>
+</table>
+<h2 id="expression-ternaire">expression ternaire</h2>
+<pre><code class="language-C"><div><span class="hljs-keyword">int</span> age=<span class="hljs-number">5</span>, majeur;
+<span class="hljs-keyword">if</span> (age&gt;<span class="hljs-number">18</span>)
+{
+    majeur = <span class="hljs-number">1</span>;
+}
+<span class="hljs-keyword">else</span>{
+    majeur =<span class="hljs-number">0</span>;
+}
+<span class="hljs-comment">/* cette condition peut s&#x27;ecrire sous une forme ternaire: */</span>
+majeur=(age&gt;<span class="hljs-number">18</span>)? <span class="hljs-number">1</span>:<span class="hljs-number">0</span>;
+</div></code></pre>
+<h2 id="les-boucles">Les Boucles</h2>
+<p>Boucle while et do..while:</p>
+<pre><code class="language-C"><div><span class="hljs-keyword">while</span> (<span class="hljs-comment">/* Condition */</span>)
+{
+    <span class="hljs-comment">// Instructions à répéter</span>
+}
+<span class="hljs-comment">/* Ou */</span>
+<span class="hljs-keyword">do</span>{
+    <span class="hljs-comment">// Instructions à répéter</span>
+}
+<span class="hljs-keyword">while</span> (<span class="hljs-comment">/* Condition */</span>);
+</div></code></pre>
+<p>Boucle for:</p>
+<pre><code class="language-C"><div><span class="hljs-keyword">int</span> compteur;
+
+<span class="hljs-keyword">for</span> (compteur = <span class="hljs-number">0</span> ; compteur &lt; <span class="hljs-number">10</span> ; compteur++)
+{
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>,compteur);
+}
+</div></code></pre>
+<p>Les instructions:</p>
+<ul>
+<li>Break: permet de quitter la boucle</li>
+<li>continue: permet de passer à l'iteration suivante de la boucle sans faire les instruction suivante de la boucle.</li>
+</ul>
+<h2 id="prototype">prototype</h2>
+<p>Lorsque l'on programme en C, les differentes fonction que l'on veut utiliser dans la fonction main doivent êtres déclkarées avant la fonction main. Pour pouvoir mettre les fonctions ou l'on veut, on va utiliser un prototype. Exemple:</p>
+<pre><code class="language-C"><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdlib.h&gt;</span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">aireRectangle</span><span class="hljs-params">(<span class="hljs-keyword">double</span> largeur, <span class="hljs-keyword">double</span> hauteur)</span></span>; <span class="hljs-comment">// On copie le nom de la fonction avec ses paramètres en haut du programme.</span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span>
+</span>{
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;l&#x27;aire d&#x27;un rectangle de largeur 5 et de hauteur 10 est %.1f&quot;</span>, aireRectangle(<span class="hljs-number">5</span>,<span class="hljs-number">10</span>));
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">aireRectangle</span><span class="hljs-params">(<span class="hljs-keyword">double</span> largeur, <span class="hljs-keyword">double</span> hauteur)</span>
+</span>{
+    <span class="hljs-keyword">return</span> largeur * hauteur;
+}
+</div></code></pre>
+<p>Un prototype permet de dire à l'ordinateur qu'il existe une fonction qui prend tels paramètres en entrée et renvoie une sortie du type que l'on indique.</p>
+<h2 id="structure-dun-projet">structure d'un projet</h2>
+<h3 id="exemple">exemple</h3>
+<p><img src="/uploads/img/structure_proj_draw.PNG" alt="structure_proj_draw.PNG"></p>
+<p>Dans cette exemple le fichier &quot;view.c&quot; contient les fonctions concernant l'interface graphique
+Le fichier &quot;controller.c&quot; contient les fonctions concernant la logique de l'application.</p>
+<p>2 types de fichiers:</p>
+<ul>
+<li>.h: fichiers header, contiennent les prototypes des fonctions</li>
+<li>.c: fichiers source, contiennent les fonctions</li>
+</ul>
+<p>Dans le fichier &quot;view.c&quot;:</p>
+<pre><code class="language-C"><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdlib.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&quot;view.h&quot;</span></span>
+</div></code></pre>
+<p>On retrouve les bibliothèques &quot;stdio.h&quot; et &quot;stdlib.h&quot; entre &lt;&gt;. Ce sont des bibliothèques déja installés.
+On retrouve ensuite le fichier header &quot;view.h&quot; entre &quot;&quot;. Il est placé dans le repertoire du projet. On retrouve dans ce fichier les prototypes des fonctions du fichier &quot;view.c&quot;.<br>
+<strong>ATTENTION</strong>: lors de la compilation, il faut compiler tous les fichiers .c. Par exemple:</p>
+<pre><code><code><div>gcc *.c -o start.exe
+</div></code></code></pre>
+<h2 id="la-compilation">La compilation</h2>
+<p>La compilation d'un programme se fait en plusieurs étapes:</p>
+<ul>
+<li><strong>préprocesseur</strong>: programme démarrant avant la compilation. Il execute les instructions spéciales données par les directives commençant par un # (#include,...). Il remplace par exemple les directives &quot;include&quot; par les contenus des fichiers .h.</li>
+<li><strong>compilation</strong>: génere des fichiers en code binaire compréhensible par l'ordinateur à partir des fichiers source (.c). Le fichier résultant est un fichier .o ou .obj en fonction du compilateur.</li>
+<li><strong>éditeur de liens (le linker)</strong>: il assemble tous les fichiers .o dans un seul fichier executable (.exe sous windows).</li>
+</ul>
+<p><img src="/uploads/img/compilation_draw.PNG" alt="compilation_draw.PNG"></p>
+<h2 id="portée-des-variables-et-fonctions">Portée des variables et fonctions</h2>
+<p>Variable prope à une fonction:</p>
+<pre><code class="language-C"><div><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">fonction</span><span class="hljs-params">()</span></span>{
+  <span class="hljs-keyword">int</span> nb; <span class="hljs-comment">//la variable ne peut être utilisé que dans cette fonction</span>
+}
+</div></code></pre>
+<p>Variable global accessible dans tout le projet:</p>
+<pre><code class="language-C"><div><span class="hljs-keyword">int</span> resultat; <span class="hljs-comment">//Déclaration de variable globale</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">fonction</span><span class="hljs-params">()</span></span>{
+  <span class="hljs-keyword">int</span> nb=<span class="hljs-number">5</span>;
+  resultat = nb
+}
+</div></code></pre>
+<p>Variable global accessible seulement dans le fichier:</p>
+<pre><code class="language-C"><div><span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> resultat; <span class="hljs-comment">//Déclaration de variable globale</span>
+</div></code></pre>
+<p>Si l'on met le mot clé <strong>&quot;static&quot;</strong> à l'interieur d'une fonction, la variable n'est plus supprimée à la fin de la fonction. La prochaine fois que l'on appellera la fonction, la variable aura conservé sa valeur.</p>
+<pre><code class="language-C"><div><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">incremente</span><span class="hljs-params">()</span></span>{
+ <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> nb=<span class="hljs-number">0</span>;
+ <span class="hljs-keyword">return</span> nb++;
+}
+</div></code></pre>
+<p>Si il est mis avant une fonction, cette fonction ne sera accessible seulement dans le fichier.</p>
+<pre><code class="language-C"><div><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">foo</span><span class="hljs-params">()</span></span>{
+  <span class="hljs-comment">//instructions</span>
+}
+<span class="hljs-comment">/* Ou on peut mettre à jour le prototype */</span>
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">foo</span><span class="hljs-params">()</span></span>;
+</div></code></pre>
+<h2 id="les-pointeurs">Les pointeurs</h2>
+<p>pour voir l'adresse d'une variable:</p>
+<pre><code class="language-C"><div><span class="hljs-keyword">int</span> nb=<span class="hljs-number">10</span>;
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;l&#x27;adresse e la variable nb est %p&quot;</span>, &amp;nb); <span class="hljs-comment">// %p retourne une valeur hexadecimale de l&#x27;adresse de la variable. Pour avoir en décimal, on remet %d.</span>
+</div></code></pre>
+<p>dans ce cas:</p>
+<ul>
+<li>&quot;nb&quot; désigne la valeur de la variable</li>
+<li>&quot;&amp;nb&quot; désigne l'adresse de la variable
+Un pointeur contient une adresse. Pour creer un pointeur, on rajoute le symbole * devant le nom de la variable:</li>
+</ul>
+<pre><code class="language-C"><div><span class="hljs-keyword">int</span> *pointeur=<span class="hljs-literal">NULL</span>; <span class="hljs-comment">// Ne pas oublier d&#x27;initialiser un pointeur avec le mot clé NULL</span>
+</div></code></pre>
+<p>Pour faire un pointeur vers une autre variable:</p>
+<pre><code class="language-C"><div><span class="hljs-keyword">int</span> nb=<span class="hljs-number">10</span>;
+<span class="hljs-keyword">int</span> *pointeurNb = &amp;nb;
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>, pointeurNb); <span class="hljs-comment">// retourne la valeur du pointeur (en déciaml) qui correspond à l&#x27;adresse de la variable vers laquel le pointeur pointe.</span>
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;pointeurNb); <span class="hljs-comment">// retourne l&#x27;adresse du pointeur (en décimal)</span>
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>, *pointeurNb); <span class="hljs-comment">// retourne la valeur de la variable vers laquel le pointeur pointe (dans ce cas c&#x27;est 10)</span>
+</div></code></pre>
+<p>ce qu'il se passe dans la mémoire:</p>
+<table>
+<thead>
+<tr>
+<th>variable</th>
+<th>Adresse</th>
+<th>Valeur</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>nb</td>
+<td>1602223372</td>
+<td>10</td>
+</tr>
+<tr>
+<td>pointeurNb</td>
+<td>1491322395</td>
+<td>1602223372</td>
+</tr>
+</tbody>
+</table>
+<p>valeur pointeurNb = adresse nb.
+L'adresse du pointeur est une adresse allouée par la machine comme pour toutes autres variables normales.
+Exemple de programme avec des pointeurs:</p>
+<pre><code class="language-C"><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdlib.h&gt;</span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">decoupeMinutes</span><span class="hljs-params">(<span class="hljs-keyword">int</span> *heures, <span class="hljs-keyword">int</span> *minutes)</span></span>;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-keyword">int</span> heures, minutes;
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;entrez le nombre d&#x27;heures:&quot;</span>);
+    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>,&amp;heures);
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;entrez le nombre de minutes:&quot;</span>);
+    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>,&amp;minutes);
+    decoupeMinutes(&amp;heures, &amp;minutes); <span class="hljs-comment">// On passe en argument les adresses des variables heures et minutes</span>
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d heures %d minutes: &quot;</span>, heures, minutes);
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">decoupeMinutes</span><span class="hljs-params">(<span class="hljs-keyword">int</span> *heures, <span class="hljs-keyword">int</span> *minutes)</span></span>{ <span class="hljs-comment">// Les deux arguments de la fonctions sont des pointeurs</span>
+    *heures += *minutes/<span class="hljs-number">60</span>; <span class="hljs-comment">// On modifie directement la valeur de la variable vers lequel le pointeur pointe</span>
+    *minutes = *minutes%<span class="hljs-number">60</span>;
+}
+</div></code></pre>
+<h2 id="les-tableaux">Les tableaux</h2>
+<p>Les tableaux prennent un espace contigu en mémoire:les cases sont les unes à la suite des autres. Toutes les cases su tableau sont du même type.
+Pour creer un tableau:</p>
+<pre><code class="language-C"><div><span class="hljs-keyword">int</span> tableau[<span class="hljs-number">10</span>]; <span class="hljs-comment">// créer un tableau de 10 entiers</span>
+</div></code></pre>
+<p>Pour récurperer les valeurs d'un tableau:</p>
+<pre><code class="language-C"><div><span class="hljs-keyword">int</span> tableau[<span class="hljs-number">3</span>]; <span class="hljs-comment">// créer un tableau de 3 entiers</span>
+tableau[<span class="hljs-number">0</span>]=<span class="hljs-number">12</span>; <span class="hljs-comment">// Affecte la valeur 12 dans la 1er case du tableau</span>
+tableau[<span class="hljs-number">1</span>]=<span class="hljs-number">34</span>; <span class="hljs-comment">// Affecte la valeur 34 dans la 2eme case du tableau</span>
+tableau[<span class="hljs-number">2</span>]=<span class="hljs-number">42</span>; <span class="hljs-comment">// Affecte la valeur 42 dans la 3eme case du tableau</span>
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>, tableau); <span class="hljs-comment">// Affiche l&#x27;adresse de la première case du tableau</span>
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>, tableau[<span class="hljs-number">0</span>]); <span class="hljs-comment">// Affiche la valeur de la premiere case du tableau</span>
+<span class="hljs-comment">/* OU */</span>
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>, *tableau); <span class="hljs-comment">// pareil que tableau[0]</span>
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>, *(tableau+<span class="hljs-number">1</span>)); <span class="hljs-comment">// pareil que tableau[1]</span>
+</div></code></pre>
+<p><strong>ATTENTION</strong>, selon le compilateur, on ne peut pas faire de tableau en mettant entre crochet une variable. Il faut ecrire directement le nombre de case du tableau<br>
+Pour initialiser un tableau:</p>
+<pre><code class="language-C"><div><span class="hljs-keyword">int</span> tableau[<span class="hljs-number">4</span>];
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;<span class="hljs-number">4</span>;i++){
+  tableau[i]=<span class="hljs-number">0</span> <span class="hljs-comment">// initialise le tableau à 0</span>
+} 
+<span class="hljs-comment">/* OU */</span>
+<span class="hljs-keyword">int</span> tableau[<span class="hljs-number">4</span>]={<span class="hljs-number">11</span>,<span class="hljs-number">2</span>,<span class="hljs-number">4</span>,<span class="hljs-number">0</span>};
+<span class="hljs-comment">/* OU */</span>
+<span class="hljs-keyword">int</span> tableau[<span class="hljs-number">4</span>]={<span class="hljs-number">13</span>}; <span class="hljs-comment">//initialise la première case à 13 et toutes les autres cases seront mises à zero</span>
+<span class="hljs-comment">/* OU */</span>
+<span class="hljs-keyword">int</span> tableau[]={<span class="hljs-number">13</span>,<span class="hljs-number">16</span>,<span class="hljs-number">12</span>}; <span class="hljs-comment">//initialise un tableau avec les cases mises entre crochet</span>
+</div></code></pre>
+<h2 id="les-chaînes-de-caractères">Les chaînes de caractères</h2>
+<p>On utilise le type char pour stocker une lettre:</p>
+<pre><code class="language-C"><div><span class="hljs-keyword">char</span> lettre =<span class="hljs-string">&#x27;a&#x27;</span>;
+</div></code></pre>
+<p>Pour afficher le caractères avec printf:</p>
+<pre><code class="language-C"><div><span class="hljs-keyword">char</span> lettre = <span class="hljs-string">&#x27;A&#x27;</span>;
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%c\n&quot;</span>, lettre);
+</div></code></pre>
+<p>Une chaine de caractère n'est en fait qu'un tableau de char:</p>
+<pre><code class="language-C"><div><span class="hljs-keyword">char</span> mot[]={<span class="hljs-string">&#x27;f&#x27;</span>,<span class="hljs-string">&#x27;o&#x27;</span>,<span class="hljs-string">&#x27;o&#x27;</span>,<span class="hljs-string">&#x27;\0&#x27;</span>};
+</div></code></pre>
+<p><strong>IMPORTANT</strong>: Les chaines de caractères doivent toujours se finir par le caractère &quot;\0&quot;. Il indique la fin de la chaîne de caractères (on peut donc passer la chaîne de caractères à une fonction sans avoir a indiquer la taille de la chaîne).<br>
+Pour afficher une chaîne de caractères:</p>
+<pre><code class="language-C"><div><span class="hljs-keyword">char</span> mot[]=<span class="hljs-string">&quot;foo&quot;</span>; <span class="hljs-comment">// le caractère \0 est automatiquement rajouté. Ne marche que pour l&#x27;initialisation</span>
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%s\n&quot;</span>, mot);
+</div></code></pre>
+<p>Pour récuperer une chaîne via scanf:</p>
+<pre><code class="language-C"><div><span class="hljs-keyword">char</span> mot[<span class="hljs-number">100</span>];
+<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%s&quot;</span>, &amp;mot);
+</div></code></pre>
+<p>Pour la manipulation de chaînes, la librairie string.h est disponible:</p>
+<ul>
+<li>strlen pour calculer la longueur d'une chaîne.</li>
+<li>strcpy pour copier une chaîne dans une autre.</li>
+<li>strcat pour concaténer 2 chaînes.</li>
+<li>strcmp pour comparer 2 chaînes.</li>
+<li>strchr pour rechercher un caractère.</li>
+<li>strpbrk pour rechercher le premier caractère de la liste.</li>
+<li>strstr pour rechercher une chaîne dans une autre.</li>
+<li>sprintf pour écrire dans une chaîne.</li>
+</ul>
+<h2 id="directive-de-préprocesseur">Directive de préprocesseur</h2>
+<h3 id="include">include</h3>
+<p>La directive <strong>include</strong> permet de rajouter un fichier dans un autre.</p>
+<h3 id="define">define</h3>
+<p>la directive define permet de definir une constante de préprocesseur (associer une valeur à un mot):</p>
+<pre><code class="language-C"><div><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> A 10</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> B 10</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> TAILLE_TAB A*B <span class="hljs-comment">// la constante de préprocesseur TAILLE_TAB = A*B donc 100</span></span>
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+  <span class="hljs-keyword">int</span> tab[TAILLE_TAB]; <span class="hljs-comment">// On peut utiliser la constante de préprocesseur pour définir la taille d&#x27;un tableau, car ce n&#x27;est pas une variable.</span>
+}
+</div></code></pre>
+<h3 id="les-constantes-prédefinies-par-le-processeur">les constantes prédefinies par le processeur</h3>
+<ul>
+<li>__LINE__ : numero de la ligne actuelle</li>
+<li>__FILE__ : nom du fichier actuel</li>
+<li>__DATE__ : date de compilation</li>
+<li>__TIME__ : heure de compilation</li>
+</ul>
+<h3 id="les-macros">Les macros</h3>
+<p>le mot clé define permet aussi de demander au préprocesseur de remplacer un mot par un code source tout entier.</p>
+<pre><code class="language-C"><div><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> FOO() printf(<span class="hljs-meta-string">&quot;foo&quot;</span>);</span>
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+  FOO() <span class="hljs-comment">// remplace FOO() par la macro definie dans les directives de préprocesseur</span>
+  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+
+<span class="hljs-comment">/* OU */</span>
+
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> FOO(nb, str) printf(<span class="hljs-meta-string">&quot;foo %d&quot;</span>, nb); \
+              printf(<span class="hljs-meta-string">&quot;foo1 %s&quot;</span>, str); \
+              printf(<span class="hljs-meta-string">&quot;foo2&quot;</span>); <span class="hljs-comment">// macro avec plusieurs lignes et des paramètres</span></span>
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+  FOO(<span class="hljs-number">10</span>, <span class="hljs-string">&quot;foobar&quot;</span>) 
+  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<h3 id="les-conditions-1">Les conditions</h3>
+<pre><code class="language-C"><div><span class="hljs-meta">#<span class="hljs-meta-keyword">if</span> condition</span>
+    <span class="hljs-comment">/* Code source à compiler si la condition est vraie */</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">elif</span> condition2</span>
+    <span class="hljs-comment">/* Sinon si la condition 2 est vraie compiler ce code source */</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span>
+</div></code></pre>
+<h3 id="ifdef-et-ifndef">ifdef et ifndef</h3>
+<ul>
+<li>ifdef: si la constante est définie</li>
+<li>ifndef: si la constante n'est pas definie
+Utile pour eviter les problèmes d'inclusion infinie:</li>
+</ul>
+<h2 id="structures-et-enumerations">structures et enumerations</h2>
+<h3 id="structures">Structures</h3>
+<p>Une structure est un assemblage de variables de differnts types. Ils sont généralement définis dans les fichiers .h.
+Pour definir une structure:</p>
+<pre><code class="language-C"><div><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Coor</span>{</span>
+  <span class="hljs-keyword">int</span> x;
+  <span class="hljs-keyword">int</span> y;
+}; <span class="hljs-comment">// Ne pas oublier le point virgule aprés l&#x27;accolade fermante</span>
+</div></code></pre>
+<p>Pour utiliser la structure:</p>
+<pre><code class="language-C"><div><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+  <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Coor</span> <span class="hljs-title">point</span>;</span> <span class="hljs-comment">//creer une variable de type Coor (la structure définit précedemment). On doit mettre le mot clé struct pour préciser à l&#x27;ordinateur que c&#x27;est un type personnalisé</span>
+  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<p>Pour ne pas avoir à utiliser le mot &quot;struct&quot; à chaque fois que l'on veut utiliser notre type, on peut utiliser la directive typedef permettant de preciser à l'ordinateur le nom su type personnalisé:</p>
+<pre><code class="language-C"><div><span class="hljs-comment">/* main.h */</span>
+<span class="hljs-keyword">typedef</span> Coordonnees Coor; <span class="hljs-comment">//définition du type Coor correspondant au struct Coordonnees</span>
+<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Coordonees</span>{</span>
+  <span class="hljs-keyword">int</span> x;
+  <span class="hljs-keyword">int</span> y;
+};
+
+<span class="hljs-comment">/* main.c */</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&quot;main.h&quot;</span></span>
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+  Coor point; <span class="hljs-comment">// On peut maintenant utiliser directement Coor sans mettre struct avant</span>
+  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<p>Pour utiliser un pointeur sur une fonction:</p>
+<pre><code class="language-C"><div><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">int_coor</span><span class="hljs-params">(Coor *point)</span></span>{
+  (*point).x=<span class="hljs-number">0</span>; <span class="hljs-comment">// il ne faut pas oublier les parenthèses</span>
+  (*point).y=<span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<h3 id="enumeration">enumeration</h3>
+<p>Une enumeration ne contient pas de sous variable, mais seulement des valeurs possibles pour une variable</p>
+<pre><code class="language-C"><div><span class="hljs-class"><span class="hljs-keyword">enum</span> <span class="hljs-title">Couleur</span>{</span>
+    BLEU=<span class="hljs-number">10</span>,
+    BLANC=<span class="hljs-number">20</span>,
+    ROUGE=<span class="hljs-number">30</span>,
+};
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-class"><span class="hljs-keyword">enum</span> <span class="hljs-title">Couleur</span> <span class="hljs-title">couleur</span>=</span>ROUGE;
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>, couleur); <span class="hljs-comment">// Affiche 30</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<h2 id="les-fichiers">Les fichiers</h2>
+<p>Pour manipuler un fichier, il faut d'abord inclure la stdio.h contenant des fonctions de base permettant d'ecrire et de lire un fichier.<br>
+La structure FILE permet de definir un fichier.</p>
+<p>On utilise differentes fonctions ensuite differentes fonctions pour lire ou écrire un fichier:</p>
+<ul> 
+  <li>ecriture fichier:</li>
+  <ul>
+    <li><strong>fputc</strong>: ecrit un caractère dans un fichier.</li>
+    <li><strong>fputs</strong>: écrit une chaîne dans un cichier. </li> 
+    <li><strong>fprintf</strong>: écrit une chaîne formatée dans un fichier</li>
+  </ul>
+</ul>
+<pre><code class="language-C"><div><span class="hljs-comment">/* Prototypes */</span>
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">fputc</span><span class="hljs-params">(<span class="hljs-keyword">int</span> caractere, FILE* pointeurSurFichier)</span></span>;
+<span class="hljs-function"><span class="hljs-keyword">char</span>* <span class="hljs-title">fputs</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span>* chaine, FILE* pointeurSurFichier)</span></span>;
+<span class="hljs-built_in">fprintf</span>(fichier, <span class="hljs-string">&quot;Le Monsieur qui utilise le programme, il a %d ans&quot;</span>, age);
+</div></code></pre>
+<ul>
+  <li>lecture fichier:</li>
+  <ul>
+    <li><strong>fgetc</strong>: lit un caractère dans un fichier
+    <li><strong>fgets</strong>: lit une chaîne dans un fichier
+    <li><strong>fscanf</strong>: lit une chaîne formatée
+  </ul>
+</ul>
+<pre><code class="language-C"><div><span class="hljs-comment">/* Prototypes */</span>
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">fgetc</span><span class="hljs-params">(FILE* pointeurDeFichier)</span></span>;
+<span class="hljs-function"><span class="hljs-keyword">char</span>* <span class="hljs-title">fgets</span><span class="hljs-params">(<span class="hljs-keyword">char</span>* chaine, <span class="hljs-keyword">int</span> nbreDeCaracteresALire, FILE* pointeurSurFichier)</span></span>;
+</div></code></pre>
+<ul>
+  <li>se deplacer dans un fichier:</li>
+  <ul>
+    <li><strong>ftell</strong>: indique la position du curseur dans le fichier
+    <li><strong>fseek</strong>: positionne le curseur à un endroit précis
+    <li><strong>rewind</strong>: remet le curseur au début du fichier
+  </ul>
+</ul>
+<pre><code class="language-C"><div><span class="hljs-comment">/* Prototypes */</span>
+<span class="hljs-function"><span class="hljs-keyword">long</span> <span class="hljs-title">ftell</span><span class="hljs-params">(FILE* pointeurSurFichier)</span></span>;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">fseek</span><span class="hljs-params">(FILE* pointeurSurFichier, <span class="hljs-keyword">long</span> deplacement, <span class="hljs-keyword">int</span> origine)</span></span>;
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">rewind</span><span class="hljs-params">(FILE* pointeurSurFichier)</span></span>;
+</div></code></pre>
+<p>exemple d'utilisations:</p>
+<pre><code class="language-C"><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdlib.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> MAX_BUFFER 10</span>
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">write_file</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *nomFichier, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *content)</span></span>{
+    FILE *fichier =<span class="hljs-literal">NULL</span>;
+    fichier=fopen(nomFichier, <span class="hljs-string">&quot;w+&quot;</span>);
+    <span class="hljs-keyword">if</span>(fichier != <span class="hljs-literal">NULL</span>){
+        <span class="hljs-built_in">fputs</span>(content ,fichier);
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%s\n&quot;</span>), content;
+        <span class="hljs-keyword">if</span> (fclose(fichier)==EOF){
+            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;erreur lors de la fermeture fichier test.txt\n&quot;</span>);
+        }
+    }
+    <span class="hljs-keyword">else</span>{
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;echec ouverture fichier %s\n&quot;</span>, nomFichier);
+    }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">read_file</span><span class="hljs-params">(<span class="hljs-keyword">char</span> *text, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *nomFichier)</span></span>{
+    FILE *fichier=<span class="hljs-literal">NULL</span>;
+    <span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;
+    fichier=fopen(nomFichier, <span class="hljs-string">&quot;r+&quot;</span>);
+    <span class="hljs-keyword">if</span>(fichier != <span class="hljs-literal">NULL</span>){
+        <span class="hljs-keyword">for</span>(i; i&lt;MAX_BUFFER;i++)
+        {
+           text[i]= getc(fichier);            
+           <span class="hljs-keyword">if</span> (text[i]==EOF){
+                text[i]=<span class="hljs-number">0</span>;
+                <span class="hljs-keyword">break</span>;
+            }
+        }
+        <span class="hljs-keyword">if</span> (fclose(fichier)==EOF){
+            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;erreur lors de la fermeture fichier test.txt\n&quot;</span>);
+        }
+    }
+    <span class="hljs-keyword">else</span>{
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;echec ouverture fichier %s\n&quot;</span>, nomFichier);
+    }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span> *argv[])</span>
+</span>{
+    <span class="hljs-keyword">char</span> text[MAX_BUFFER]={<span class="hljs-number">0</span>};
+    read_file(text, <span class="hljs-string">&quot;test.txt&quot;</span>);
+    write_file(<span class="hljs-string">&quot;test1.txt&quot;</span>,<span class="hljs-string">&quot;Bienvenue en Russie&quot;</span>);
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;contenu fichier: %s\n&quot;</span>, text);
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+
+</div></code></pre>
+<p>les modes d'ouverture:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>r</strong></td>
+<td>lecture seule. Le fichier doit avoir été créé au préalable.</td>
+</tr>
+<tr>
+<td><strong>w</strong></td>
+<td>ecriture seule, si le fichier n'existe pas, il est créé.</td>
+</tr>
+<tr>
+<td><strong>a</strong></td>
+<td>mode ajout</td>
+</tr>
+<tr>
+<td><strong>a+</strong></td>
+<td>ajout en lecture /ecriture à la fin. ecrit et lit du texte à partir de la fin du fichier</td>
+</tr>
+<tr>
+<td><strong>w+</strong></td>
+<td>lecture et ecriture. Suppression du contenu au préalable</td>
+</tr>
+<tr>
+<td><strong>r+</strong></td>
+<td>lecture et ecriture. Le fichier doit avoir été créé au préalable.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="renommer-et-supprimer-un-fichier">renommer et supprimer un fichier</h3>
+<ul>
+<li>rename:</li>
+</ul>
+<pre><code class="language-C"><div><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">rename</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span>* ancienNom, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span>* nouveauNom)</span></span>;
+</div></code></pre>
+<ul>
+<li>remove:</li>
+</ul>
+<pre><code class="language-C"><div><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">remove</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span>* fichierASupprimer)</span></span>;
+</div></code></pre>
+<h2 id="allocation-dynamique">Allocation dynamique</h2>
+<h3 id="sizeof">sizeof</h3>
+<p>La fonction sizeof permet de determiner la taille en memoire d'une variable</p>
+<pre><code class="language-C"><div><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span> *argv[])</span></span>{
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>,<span class="hljs-keyword">sizeof</span>(<span class="hljs-keyword">char</span>)); <span class="hljs-comment">// retourne 1. Une variable du type char occupe 1 octet en memoire</span>
+}
+</div></code></pre>
+<table>
+<thead>
+<tr>
+<th>type</th>
+<th>taille (en Octets)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>char</td>
+<td>1</td>
+</tr>
+<tr>
+<td>int</td>
+<td>4</td>
+</tr>
+<tr>
+<td>long</td>
+<td>8</td>
+</tr>
+<tr>
+<td>float</td>
+<td>4</td>
+</tr>
+<tr>
+<td>double</td>
+<td>8</td>
+</tr>
+</tbody>
+</table>
+<h3 id="allocation-manuelle-de-la-mémoire-malloc-et-free">Allocation manuelle de la mémoire (malloc et free)</h3>
+<p>La bibliothèque stdlib.h contient 2 fonctions permettant d'allouer manuellement de la memoire:</p>
+<ul>
+<li><strong>malloc</strong>(&quot;Memory Allocation&quot;): demande à l'os la permission d'utiliser de la mémoire</li>
+</ul>
+<pre><code class="language-C"><div><span class="hljs-function"><span class="hljs-keyword">void</span>* <span class="hljs-title">malloc</span><span class="hljs-params">(<span class="hljs-keyword">size_t</span> nombreOctetsNecessaires)</span></span>;
+</div></code></pre>
+<ul>
+<li><strong>free</strong>: indique au système que l'on n'a plus besoin de la mémoire que l'on a demandée.</li>
+</ul>
+<pre><code class="language-C"><div><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">free</span><span class="hljs-params">(<span class="hljs-keyword">void</span>* pointeur)</span></span>;
+</div></code></pre>
+<p>Pour allouer manuellement de la mémoire, 3 étape:</p>
+<ol>
+<li>Appeler malloc pour demander de la mémoire</li>
+<li>Vérifier la valeur retournée par malloc pour savoir si le système a bien réussi à allouer la mémoire</li>
+<li>Liberer la mémoire avec free. <strong>ATENTION</strong>, Si on ne fait pas cette étape, on risque des fuites de mémoire.</li>
+</ol>
+<h2 id="mots-clés">Mots-clés</h2>
+<table>
+<thead>
+<tr>
+<th>Mot clés</th>
+<th>Déscription</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>break</strong></td>
+<td>quitte une boucle</td>
+</tr>
+<tr>
+<td><strong>continue</strong></td>
+<td>saute l'iteration actuelle de la boucle et passe à l'itération suivante</td>
+</tr>
+<tr>
+<td><strong>static</strong></td>
+<td>3 cas possibles:<ul><li>en dehors des fonctions: creer une variable globale accessible seulement dans le fichier</li><li>avant la declaration d'une fonction: permet de rendre la fonction accessible seulement dans le fichier</li><li>dans une fonction: la variable déclarée en static dans une fonction retiendra sa dernière valeur lorsque la fonction sera rappelée </li></ul></td>
+</tr>
+</tbody>
+</table>
+<h2 id="regles-decritures">Regles d'ecritures:</h2>
+<ul>
+<li>nom de variable: ecrire les noms de variables en minuscule. Si c'est une variable avec plusieurs mots, ecrire en camelCase (en mettant la première lettre de la variable en minuscule)</li>
+<li>nom de struct: ecrire en CamelCase (en mettant la première lettre en majuscule)</li>
+</ul>
+<h2 id="notes-importantes">Notes importantes</h2>
+<ul>
+<li>Il y a une difference entre ' et &quot;. on utilise &quot; pour un string et ' pour un caractère</li>
+</ul>
+<pre><code class="language-C"><div><span class="hljs-keyword">char</span> a=<span class="hljs-string">&#x27;f&#x27;</span>
+<span class="hljs-comment">/* != */</span>
+<span class="hljs-keyword">char</span> *a=<span class="hljs-string">&quot;foobar&quot;</span>
+</div></code></pre>

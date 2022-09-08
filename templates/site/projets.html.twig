@@ -25,6 +25,26 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="openable-frame">
+            <div class="frame-title">
+                <div class="row">
+                    <div class="col-6">
+                        <h1>{{ 'Jeu web'|trans }}</h1>
+                    </div>
+                    <div class="col-6">
+                        <button class="button align-right" onclick="openframe(1)">-/+</button>
+                    </div>
+                </div>
+            </div>
+            <div class="openable-frame-body">
+                <h3>{{ 'Présentation'|trans }}</h3>
+                <p>{{ 'Jeu web'|trans }}
+                </p>
+                <button class="button" onclick="window.location.href='/webgame'"><h4>{{ 'lien'|trans }}</h4></button>
+            </div>
+        </div>
+    </div>
 </div>
 <script>
     var elems = document.getElementsByClassName("openable-frame")

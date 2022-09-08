@@ -10,7 +10,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\Security;
 use App\Entity\Prestation;
-use App\Entity\Panier;  
+use App\Entity\Panier;
+use App\Entity\Document;
 
 class DbController extends AbstractController
 {
@@ -35,6 +36,25 @@ class DbController extends AbstractController
         return $this->redirectToRoute("gestionprestations");
     }
     
+    /**
+     * @IsGranted("ROLE_ADMIN")
+     * @Route("/ajout_document")
+     */
+    public function ajout_document(Request $request, EntityManagerInterface $manager): Response
+
+    {
+        $document = new Document();
+        $title = $request->request->get("Titre");
+        $html = $request->request->get("Html");
+        $document->setTitle($title);
+        if($html){
+            $document->setHtml($html);
+        }
+        $manager->persist($document);
+        $manager->flush();
+        return $this->redirectToRoute("gestionDocuments");
+    }
+
     /**
      * @IsGranted("ROLE_ADMIN")
      * @Route("/default_remplissagedb")
